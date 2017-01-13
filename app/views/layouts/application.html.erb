@@ -9,6 +9,17 @@
   </head>
 
   <body>
+  	<h1 style="color: green;">this is the Public Facing</h1>
+
+    <ul>
+      <li><%= link_to 'Main Page', main_page_path %></li>
+      <li><%= link_to 'Portfolio', portfolio_sections_path %></li>
+      <li><%= link_to 'Services', services_path %></li>
+      <li>Learning Center</li>
+      <li><%= link_to 'About', about_path %></li>
+      <li><%= link_to 'Contact', contact_path %></li>
+      <li><%= link_to 'Admin', admin_path %></li>
+    </ul>
     <%= yield %>
   </body>
 </html>

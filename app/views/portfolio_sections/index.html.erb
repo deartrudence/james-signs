@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Portfolio Sections</h1>
+<hr><hr>
+    <% @portfolio_sections.each do |portfolio_section| %>
+      
+      <h2 style="text-align: center;"><%= portfolio_section.title %> </h2>
+      <p style="text-align: center;"><%= portfolio_section.description %></p>
+
+      <% portfolio_section.sub_categories.each do |sub_category| %>
+
+      <div style="width: 33.333%; float:left;">
+        <%= link_to sub_category do %>
+          <h3><%= sub_category.title %></h3>
+          <%= image_tag sub_category.pictures.first.image.url %>
+          <p><%= sub_category.description %></p>
+        <% end %>
+      </div>
+
+      <% end %>
+      <hr>
+      
+    <% end %>
+
+
+
+

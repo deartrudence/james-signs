@@ -1,0 +1,81 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Portfolio section:</strong>
+  <%= @sub_category.portfolio_section.title %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @sub_category.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @sub_category.description %>
+</p>
+
+<h3>PROJECTS</h3>
+	<% first_project = @sub_category.projects.first%>
+
+	<% if first_project.present? %>
+		<div id="js_first" style="text-align: center; border: 1px solid black;">
+			<%= image_tag(first_project.pictures.first.image.url) if first_project.pictures.present? %>
+			<h3><%= first_project.title %></h3>
+			<p><%= first_project.item_number %></p>
+			<p><%= first_project.size %></p>
+			<p><%= first_project.materials %></p>
+			<p><%= first_project.description %></p>
+
+			<% if first_project.pictures.count > 2  %>
+				<div class="js_additional_photos">
+					<h5>Additional Photos</h5>
+					<% first_project.pictures.offset(1).each do |picture| %>
+						<%= image_tag(picture.image.url, style: "max-width: 100px")%>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+
+<% @sub_category.projects.offset(1).each do |project| %>
+	<div class="js_secondary" style="width:33.333%; float: left;">
+		<%= image_tag(project.pictures.first.image.url) if project.pictures.present? %>
+		<h3><%= project.title %></h3>
+		<p><%= project.item_number %></p>
+		<p><%= project.size %></p>
+		<p><%= project.materials %></p>
+		<p><%= project.description %></p>
+
+		<% if first_project.pictures.offset(1).present?  %>
+			<div class="hide js_additional_photos">
+				<h5>Additional Photos</h5>
+				<% project.pictures.offset(1).each do |picture| %>
+					<%= image_tag(picture.image.url, style: "max-width: 100px")%>
+				<% end %>
+			</div>
+		<% end %>	
+	</div>
+<% end %>
+
+<style>
+	#js_first img {
+		max-width: 200px;
+	}
+</style>
+<script>
+	$('.js_secondary').on('click', function(){
+
+		var attr = $(this).children()
+		var prev_attr = $('#js_first').children()
+
+		$(this).find('.js_additional_photos').removeClass('hide')
+
+		$('#js_first').html(attr)
+		
+		$(this).html(prev_attr)
+		$(this).find('.js_additional_photos').addClass('hide')
+		console.log($(this).find('.js_additional_photos').addClass('hide'))
+		$('html, body').animate({scrollTop: $('#js_first').offset().top })
+	})
+</script>
