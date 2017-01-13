@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    @sub_categories = SubCategory.all
     @projects = Project.all
     respond_to do |format|
       format.html {render :layout => 'admin'}

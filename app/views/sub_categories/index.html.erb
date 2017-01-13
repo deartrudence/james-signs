@@ -1,31 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Sub Categories</h1>
+<h1 style="text-align: center;">Sub Categories</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Portfolio section</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @sub_categories.each do |sub_category| %>
-      <tr>
-        <td><%= sub_category.portfolio_section %></td>
-        <td><%= sub_category.title %></td>
-        <td><%= sub_category.description %></td>
-        <td><%= link_to 'Show', sub_category %></td>
-        <td><%= link_to 'Edit', edit_sub_category_path(sub_category) %></td>
-        <td><%= link_to 'Destroy', sub_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<% @portfolio_sections.each do |portfolio_section| %>
+  <h3><%= portfolio_section.title %></h3>
+  <table>
+    <% if portfolio_section.sub_categories.present? %>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Portfolio section</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
     <% end %>
-  </tbody>
-</table>
+
+    <tbody>
+      <% portfolio_section.sub_categories.each do |sub_category| %>
+        <tr>
+          <td><%= image_tag sub_category.pictures.try(:first).try(:image).try(:url) %></td>
+          <td><%= sub_category.portfolio_section.title %></td>
+          <td><%= sub_category.title %></td>
+          <td><%= sub_category.description.truncate(10) %></td>
+          <td><%= link_to 'Show', sub_category %></td>
+          <td><%= link_to 'Edit', edit_sub_category_path(sub_category) %></td>
+          <td><%= link_to 'Destroy', sub_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'New Sub Category', new_sub_category_path(portfolio_section_id: portfolio_section.id ) %>
+  <hr>
+<% end %>
 
 <br>
 
-<%= link_to 'New Sub Category', new_sub_category_path %>
+

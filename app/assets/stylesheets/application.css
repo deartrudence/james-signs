@@ -22,3 +22,11 @@ img {
 .hide {
 	display: none;
 }
+
+.clearfix {
+    overflow: auto;
+}
+
+.menu-hl {
+	background-color: yellowgreen;
+}

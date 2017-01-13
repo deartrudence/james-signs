@@ -36,6 +36,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'paperclip'
 gem 'aws-sdk'
 
+#to build breadcrumbs
+gem "breadcrumbs_on_rails"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :production do

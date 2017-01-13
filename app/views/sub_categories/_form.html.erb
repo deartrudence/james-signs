@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :portfolio_section_id %>
-    <%= f.collection_select :portfolio_section_id, PortfolioSection.all, :id, :title %>
+    <%= f.collection_select :portfolio_section_id, PortfolioSection.all, :id, :title, {:selected => params[:portfolio_section_id] || sub_category.portfolio_section_id } %>
   </div>
 
   <div class="field">

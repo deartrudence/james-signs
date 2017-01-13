@@ -8,7 +8,7 @@ class PagesController < ApplicationController
 	end
 
 	def main_page
-		
+		@recent_projects = Project.where(recent: true)
 	end
 
 	def services

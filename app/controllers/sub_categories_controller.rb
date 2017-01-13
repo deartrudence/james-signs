@@ -4,12 +4,20 @@ class SubCategoriesController < ApplicationController
   # GET /sub_categories
   # GET /sub_categories.json
   def index
+    @portfolio_sections = PortfolioSection.all
     @sub_categories = SubCategory.all
+    respond_to do |format|
+      format.html {render :layout => 'admin'}
+    end
   end
 
   # GET /sub_categories/1
   # GET /sub_categories/1.json
   def show
+    add_breadcrumb "Main", main_page_path
+    add_breadcrumb "Portfolio", portfolio_sections_path
+    add_breadcrumb "#{@sub_category.portfolio_section.title}"
+    add_breadcrumb "#{@sub_category.title}" 
   end
 
   # GET /sub_categories/new

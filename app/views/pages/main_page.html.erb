@@ -1,1 +1,21 @@
-<h2>This is the Main Page</h2>
+<h2 style="text-align:center;font-style:italic;">Our Clients recommend us for our Solution making skills and that we Really Do Care</h2>
+
+<hr>
+<h2>Our Service</h2>
+<p>Lorem ipsum dolor sit amet, dictum enim lobortis arcu eu ultrices nonummy, ornare tellus, posuere odio vivamus, nec quis lobortis nec, quis dolor aptent risus vel taciti. Et platea ac. Auctor nonummy ligula dolor vel, ultricies lorem sit libero dui lorem. Amet augue wisi, dolor vivamus suspendisse quam, sollicitudin amet, id nulla lectus voluptatibus fusce. At penatibus, imperdiet mi mi orci, sit lacus a wisi. In arcu elementum, diam vestibulum id tellus mollitia.</p>
+
+<h2>Portfolio of Recent Projects</h2>
+<div class="clearfix">
+	<% @recent_projects.each do |project| %>
+		<div style="width:33.333%; float:left;">
+			<p><%= project.title %></p>
+			<%= image_tag project.pictures.first.image.url if project.pictures.present? %>
+		</div>
+	<% end %>
+</div>
+
+<h2>Learning Center & FAQ</h2>
+<p>Lorem ipsum dolor sit amet, dictum enim lobortis arcu eu ultrices nonummy, ornare tellus, posuere odio vivamus, nec quis lobortis nec, quis dolor aptent risus vel taciti. Et platea ac. Auctor nonummy ligula dolor vel, ultricies lorem sit libero dui lorem. Amet augue wisi, dolor vivamus suspendisse quam, sollicitudin amet, id nulla lectus voluptatibus fusce. At penatibus, imperdiet mi mi orci, sit lacus a wisi. In arcu elementum, diam vestibulum id tellus mollitia.</p>
+
+<h2>About James Signs</h2>
+<p>Lorem ipsum dolor sit amet, dictum enim lobortis arcu eu ultrices nonummy, ornare tellus, posuere odio vivamus, nec quis lobortis nec, quis dolor aptent risus vel taciti. Et platea ac. Auctor nonummy ligula dolor vel, ultricies lorem sit libero dui lorem. Amet augue wisi, dolor vivamus suspendisse quam, sollicitudin amet, id nulla lectus voluptatibus fusce. At penatibus, imperdiet mi mi orci, sit lacus a wisi. In arcu elementum, diam vestibulum id tellus mollitia.</p>

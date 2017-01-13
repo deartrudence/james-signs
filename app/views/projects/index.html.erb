@@ -2,38 +2,46 @@
 
 <h1>Projects</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Sub category</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Item number</th>
-      <th>Size</th>
-      <th>Materials</th>
-      <th>Recent</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.sub_category.title %></td>
-        <td><%= project.title %></td>
-        <td><%= project.description %></td>
-        <td><%= project.item_number %></td>
-        <td><%= project.size %></td>
-        <td><%= project.materials %></td>
-        <td><%= project.recent %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<% @sub_categories.each do |sub_category| %>
+  <h3><%= sub_category.title %></h3>
+  <table>
+    <% if sub_category.projects.present? %>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Sub category</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Item number</th>
+          <th>Size</th>
+          <th>Materials</th>
+          <th>Recent</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
     <% end %>
-  </tbody>
-</table>
+
+    <tbody>
+      <% sub_category.projects.each do |project| %>
+        <tr>
+          <td><%= image_tag project.pictures.try(:first).try(:image).try(:url) %></td>
+          <td><%= project.sub_category.title %></td>
+          <td><%= project.title %></td>
+          <td><%= project.description %></td>
+          <td><%= project.item_number %></td>
+          <td><%= project.size %></td>
+          <td><%= project.materials %></td>
+          <td><%= project.recent %></td>
+          <td><%= link_to 'Show', project %></td>
+          <td><%= link_to 'Edit', edit_project_path(project) %></td>
+          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'New Project', new_project_path(sub_category_id: sub_category.id) %>
+  <hr>
+<% end %>
 
 <br>
 
-<%= link_to 'New Project', new_project_path %>
