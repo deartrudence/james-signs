@@ -5,7 +5,7 @@
 <% @sub_categories.each do |sub_category| %>
   <h3 style="text-align: center;"><%= sub_category.portfolio_section.title %> - <%= sub_category.title %></h3>
   <hr>
-  <table id="sortable-<%= sub_category.id %>" data-update_url="<%= sort_projects_path %>">
+  <table id="sortable-<%= sub_category.id %>" data-sub_cat_id="<%= sub_category.id %>"data-update_url="<%= sort_projects_path %>">
     <% if sub_category.projects.present? %>
       <thead>
         <tr>
@@ -20,7 +20,7 @@
 
     <tbody class="projects" >
       <% sub_category.projects.rank(:project_order).each do |project| %>
-        <tr class="project" data-project_id="<%= project.id %>" data-rank="<%= project.project_order %>">
+        <tr class="project-<%= sub_category.id %>" data-project_id="<%= project.id %>" data-rank="<%= project.project_order %>">
           <td><%= image_tag project.pictures.rank(:picture_order).try(:first).try(:image).try(:url) %></td>
           <td><%= project.sub_category.title %></td>
           <td><%= project.title %></td>
@@ -58,17 +58,20 @@
     // Loop through each and add Sortable unique id to each
     $.each(table_id_array, function(index, value){
       var sortable_id = '#' + value
+      var sub_cat_id = $(sortable_id).data('sub_cat_id')
+      var project_class = '.project-' + sub_cat_id
+
       $(sortable_id).sortable()
       $(sortable_id).sortable({
         axis: 'y',
-        items: '.project',
+        items: project_class,
         cursor: 'move',
         stop: function(e, ui){
-          ui.item.children('.project').effect('highlight', {}, 1000)
+          ui.item.children(project_class).effect('highlight', {}, 1000)
           },
           update: function(e, ui){
             item_id = ui.item.data('project_id')
-            row_order = ui.item.index('.project')
+            row_order = ui.item.index(project_class)
             console.log({item_id, row_order})
             $.ajax({
               type: 'POST',
