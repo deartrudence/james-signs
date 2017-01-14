@@ -24,7 +24,16 @@
           <td><%= image_tag project.pictures.rank(:picture_order).try(:first).try(:image).try(:url) %></td>
           <td><%= project.sub_category.title %></td>
           <td><%= project.title %></td>
-          <td><%= project.recent %></td>
+          <td><%= project.recent %>
+            <%= form_for project, remote: true do |f| %>
+            <%= f.check_box :recent,
+                  data: {
+                    remote: true,
+                    url: url_for(action: :toggle_recent, id: project.id.to_i),
+                    method: "POST"
+                  } %>
+              <% end %>
+          </td>
           <td><%= link_to 'Show', project %></td>
           <td><%= link_to 'Edit', edit_project_path(project) %></td>
           <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>

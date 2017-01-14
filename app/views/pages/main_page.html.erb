@@ -6,7 +6,7 @@
 
 <h2>Portfolio of Recent Projects</h2>
 <div class="clearfix">
-	<% @recent_projects.each do |project| %>
+	<% @recent_projects.rank(:project_order).each do |project| %>
 		<div style="width:33.333%; float:left;">
 			<p><%= project.title %></p>
 			<%= image_tag project.pictures.rank(:picture_order).first.image.url if project.pictures.present? %>

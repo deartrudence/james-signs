@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :toggle_recent]
   
   def sort
     @project = Project.find(params[:id])
@@ -7,6 +7,11 @@ class ProjectsController < ApplicationController
     @project.save
     # this action will be called via ajax
     render body: nil
+  end
+
+  def toggle_recent
+    response = @project.recent ? false : true
+    @project.update(recent: response)
   end
 
   # GET /projects
