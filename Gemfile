@@ -39,6 +39,10 @@ gem 'aws-sdk'
 #to build breadcrumbs
 gem "breadcrumbs_on_rails"
 
+#drag and droppable lists
+gem 'ranked-model'
+gem 'jquery-ui-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :production do

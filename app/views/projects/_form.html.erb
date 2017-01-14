@@ -47,20 +47,26 @@
   </div>
 
   PICTURES
-  <%= f.fields_for :pictures do |picture_form| %>
-    <div class="fields">
-      <%= picture_form.label :title %>
-      <%= picture_form.text_field :title %>
-      <%= picture_form.label :image%>
-      <%= picture_form.file_field :image %>
-      <%= unless picture_form.object.new_record? 
-        picture_form.check_box('_destroy') + picture_form.label('_destroy','Remove')
-        end
-        %>
-    </div>
-  <% end %>
+  <div class="pictures" id="sortable" data-update_url="<%= #sort_picture_path %>">
+    <%= f.fields_for :pictures do |picture_form| %>
+      <%= render 'picture_fields', f: picture_form %>
+    <% end %>
+  </div>
+
+  <%= link_to_add_fields "Add Another Image", f, :pictures %> 
 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<script>
+  $('.edit_project').on('click', '.add_fields', function(e){
+    e.preventDefault();
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    console.log($(this))
+
+    $(this).before($(this).data('fields').replace(regexp, time));
+  });
+</script>

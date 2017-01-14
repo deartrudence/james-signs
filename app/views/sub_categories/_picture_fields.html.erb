@@ -1,0 +1,11 @@
+<fieldset>
+	<%= image_tag f.object.image.url if f.object.image.url.present? %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :image%>
+  <%= f.file_field :image %>
+  <%= unless f.object.new_record? 
+    f.check_box('_destroy') + f.label('_destroy','Remove')
+    end
+    %>
+</fieldset>
