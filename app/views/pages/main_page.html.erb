@@ -9,7 +9,7 @@
 	<% @recent_projects.each do |project| %>
 		<div style="width:33.333%; float:left;">
 			<p><%= project.title %></p>
-			<%= image_tag project.pictures.first.image.url if project.pictures.present? %>
+			<%= image_tag project.pictures.rank(:picture_order).first.image.url if project.pictures.present? %>
 		</div>
 	<% end %>
 </div>

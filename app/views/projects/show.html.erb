@@ -37,7 +37,7 @@
 
 <h3>PICTURES</h3>
 
-<% @project.pictures.each do |picture| %>
+<% @project.pictures.rank(:picture_order).each do |picture| %>
   <%= image_tag(picture.image.url) %>
 <% end %>
 

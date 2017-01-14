@@ -24,7 +24,7 @@
     <tbody>
       <% sub_category.projects.each do |project| %>
         <tr>
-          <td><%= image_tag project.pictures.try(:first).try(:image).try(:url) %></td>
+          <td><%= image_tag project.pictures.rank(:picture_order).try(:first).try(:image).try(:url) %></td>
           <td><%= project.sub_category.title %></td>
           <td><%= project.title %></td>
           <td><%= project.description %></td>

@@ -7,7 +7,7 @@
 
 <% if first_project.present? %>
 	<div id="js_first" style="text-align: center; border: 1px solid black;">
-		<%= image_tag(first_project.pictures.first.image.url) if first_project.pictures.present? %>
+		<%= image_tag(first_project.pictures.rank(:picture_order).first.image.url) if first_project.pictures.present? %>
 		<h3><%= first_project.title %></h3>
 		<p><%= first_project.item_number %></p>
 		<p><%= first_project.size %></p>
@@ -17,7 +17,7 @@
 		<% if first_project.pictures.count > 2  %>
 			<div class="js_additional_photos">
 				<h5>Additional Photos</h5>
-				<% first_project.pictures.offset(1).each do |picture| %>
+				<% first_project.pictures.rank(:picture_order).offset(1).each do |picture| %>
 					<%= image_tag(picture.image.url, style: "max-width: 100px")%>
 				<% end %>
 			</div>
@@ -27,17 +27,17 @@
 
 <% @sub_category.projects.offset(1).each do |project| %>
 	<div class="js_secondary" style="width:33.333%; float: left;">
-		<%= image_tag(project.pictures.first.image.url) if project.pictures.present? %>
+		<%= image_tag(project.pictures.rank(:picture_order).first.image.url) if project.pictures.present? %>
 		<h3><%= project.title %></h3>
 		<p><%= project.item_number %></p>
 		<p><%= project.size %></p>
 		<p><%= project.materials %></p>
 		<p><%= project.description %></p>
 
-		<% if first_project.pictures.offset(1).present?  %>
+		<% if first_project.pictures.rank(:picture_order).offset(1).present?  %>
 			<div class="hide js_additional_photos">
 				<h5>Additional Photos</h5>
-				<% project.pictures.offset(1).each do |picture| %>
+				<% project.pictures.rank(:picture_order).offset(1).each do |picture| %>
 					<%= image_tag(picture.image.url, style: "max-width: 100px")%>
 				<% end %>
 			</div>
