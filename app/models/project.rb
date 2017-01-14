@@ -1,4 +1,9 @@
 class Project < ApplicationRecord
+  include RankedModel
+  
+  ranks :project_order,
+    :with_same => :sub_category_id
+
   belongs_to :sub_category
   has_many :pictures, as: :pictureable, dependent: :destroy
   

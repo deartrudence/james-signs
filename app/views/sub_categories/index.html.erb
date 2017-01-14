@@ -4,7 +4,7 @@
 
 <% @portfolio_sections.each do |portfolio_section| %>
   <h3><%= portfolio_section.title %></h3>
-  <table>
+  <table id="sortable-<%= portfolio_section.id %>" data-update_url="<%= sort_sub_categories_path %>">
     <% if portfolio_section.sub_categories.present? %>
       <thead>
         <tr>
@@ -17,10 +17,10 @@
       </thead>
     <% end %>
 
-    <tbody>
-      <% portfolio_section.sub_categories.each do |sub_category| %>
-        <tr>
-          <td><%= image_tag sub_category.pictures.try(:first).try(:image).try(:url) %></td>
+    <tbody class="sub_categories">
+      <% portfolio_section.sub_categories.rank(:sub_category_order).each do |sub_category| %>
+        <tr class="sub_category" data-sub_category_id="<%=  sub_category.id %>" data-rank="<%= sub_category.sub_category_order %>">
+          <td><%= image_tag sub_category.pictures.rank(:picture_order).try(:first).try(:image).try(:url) %></td>
           <td><%= sub_category.portfolio_section.title %></td>
           <td><%= sub_category.title %></td>
           <td><%= sub_category.description.truncate(10) %></td>
@@ -36,5 +36,39 @@
 <% end %>
 
 <br>
+
+<script>
+    // Drag and Droppable Order
+
+    // Get all the tables on the page
+    var table_id_array = $('table').map(function(){
+      return $(this).attr('id')
+    });
+
+    // Loop through each and add Sortable unique id to each
+    $.each(table_id_array, function(index, value){
+      var sortable_id = '#' + value
+      $(sortable_id).sortable()
+      $(sortable_id).sortable({
+        axis: 'y',
+        items: '.sub_category',
+        cursor: 'move',
+        stop: function(e, ui){
+          ui.item.children('.sub_category').effect('highlight', {}, 1000)
+          },
+          update: function(e, ui){
+            item_id = ui.item.data('sub_category_id')
+            row_order = ui.item.index('.sub_category')
+            console.log({item_id, row_order})
+            $.ajax({
+              type: 'POST',
+              url: $(this).data('update_url'),
+              dataType: 'json',
+              data: {id: item_id, sub_category: { sub_category_order_position: row_order}}  
+            })
+          }
+        })
+      })
+</script>
 
 

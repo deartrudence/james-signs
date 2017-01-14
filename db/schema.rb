@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170114011730) do
+ActiveRecord::Schema.define(version: 20170114161436) do
 
   create_table "pictures", force: :cascade do |t|
     t.string   "title"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170114011730) do
     t.boolean  "recent"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "project_order"
     t.index ["sub_category_id"], name: "index_projects_on_sub_category_id"
   end
 
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170114011730) do
     t.text     "description"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "sub_category_order"
     t.index ["portfolio_section_id"], name: "index_sub_categories_on_portfolio_section_id"
   end
 

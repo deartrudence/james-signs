@@ -1,4 +1,4 @@
-<fieldset>
+<fieldset class="picture" data-picture_id="<%= f.object.id %>">
 	<%= image_tag f.object.image.url if f.object.image.url.present? %>
   <%= f.label :title %>
   <%= f.text_field :title %>

@@ -1,6 +1,13 @@
 class SubCategoriesController < ApplicationController
   before_action :set_sub_category, only: [:show, :edit, :update, :destroy]
 
+  def sort
+    @sub_category = SubCategory.find(params[:id])
+    @sub_category.attributes = params.require(:sub_category).permit(:sub_category_order_position)
+    @sub_category.save
+    # this action will be called via ajax
+    render body: nil
+  end
   # GET /sub_categories
   # GET /sub_categories.json
   def index

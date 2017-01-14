@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'admin' => 'pages#admin'
 
   post 'sort_pictures' => 'picture#sort' 
+  post 'sort_projects' => 'projects#sort' 
+  post 'sort_sub_categories' => 'sub_categories#sort' 
   # get 'admin_index' => 'sub_categories#admin_index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

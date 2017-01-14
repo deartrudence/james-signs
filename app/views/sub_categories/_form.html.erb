@@ -27,9 +27,11 @@
   </div>
 
   PICTURES
-  <%= f.fields_for :pictures do |picture_form| %>
-    <%= render 'picture_fields', f: picture_form %>
-  <% end %>
+  <div class="pictures" id="sortable" data-update_url="<%= sort_pictures_path%>">
+    <%= f.fields_for :pictures, f.object.pictures.rank(:picture_order) do |picture_form| %>
+      <%= render 'picture_fields', f: picture_form %>
+    <% end %>
+  </div>
 
   <%= link_to_add_fields "Add Another Image", f, :pictures %>
 
@@ -39,6 +41,7 @@
 <% end %>
 
 <script>
+  // Add Another Image
   $('.edit_sub_category').on('click', '.add_fields', function(e){
     e.preventDefault();
     time = new Date().getTime();
@@ -47,4 +50,27 @@
 
     $(this).before($(this).data('fields').replace(regexp, time));
   });
+
+  // Drag and Droppable Order
+  $('#sortable').sortable();
+
+  $('#sortable').sortable({
+    axis: 'y',
+    items: '.picture',
+    cursor: 'move',
+    stop: function(e, ui){
+      ui.item.children('.picture').effect('highlight', {}, 1000)
+      },
+      update: function(e, ui){
+        item_id = ui.item.data('picture_id')
+        row_order = ui.item.index('.picture')
+        console.log(item_id)
+        $.ajax({
+          type: 'POST',
+          url: $(this).data('update_url'),
+          dataType: 'json',
+          data: {id: item_id, picture: { picture_order_position: row_order}}  
+          })
+      }
+    })
 </script>

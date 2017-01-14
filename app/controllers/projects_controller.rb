@@ -1,5 +1,14 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  
+  def sort
+    @project = Project.find(params[:id])
+    @project.attributes = params.require(:project).permit(:project_order_position)
+    @project.save
+    # this action will be called via ajax
+    render body: nil
+  end
+
   # GET /projects
   # GET /projects.json
   def index

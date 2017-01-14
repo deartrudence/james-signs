@@ -3,34 +3,27 @@
 <h1>Projects</h1>
 
 <% @sub_categories.each do |sub_category| %>
-  <h3><%= sub_category.title %></h3>
-  <table>
+  <h3 style="text-align: center;"><%= sub_category.portfolio_section.title %> - <%= sub_category.title %></h3>
+  <hr>
+  <table id="sortable-<%= sub_category.id %>" data-update_url="<%= sort_projects_path %>">
     <% if sub_category.projects.present? %>
       <thead>
         <tr>
           <th></th>
           <th>Sub category</th>
           <th>Title</th>
-          <th>Description</th>
-          <th>Item number</th>
-          <th>Size</th>
-          <th>Materials</th>
           <th>Recent</th>
           <th colspan="3"></th>
         </tr>
       </thead>
     <% end %>
 
-    <tbody>
-      <% sub_category.projects.each do |project| %>
-        <tr>
+    <tbody class="projects" >
+      <% sub_category.projects.rank(:project_order).each do |project| %>
+        <tr class="project" data-project_id="<%= project.id %>" data-rank="<%= project.project_order %>">
           <td><%= image_tag project.pictures.rank(:picture_order).try(:first).try(:image).try(:url) %></td>
           <td><%= project.sub_category.title %></td>
           <td><%= project.title %></td>
-          <td><%= project.description %></td>
-          <td><%= project.item_number %></td>
-          <td><%= project.size %></td>
-          <td><%= project.materials %></td>
           <td><%= project.recent %></td>
           <td><%= link_to 'Show', project %></td>
           <td><%= link_to 'Edit', edit_project_path(project) %></td>
@@ -44,4 +37,38 @@
 <% end %>
 
 <br>
+
+<script>
+    // Drag and Droppable Order
+
+    // Get all the tables on the page
+    var table_id_array = $('table').map(function(){
+      return $(this).attr('id')
+    });
+
+    // Loop through each and add Sortable unique id to each
+    $.each(table_id_array, function(index, value){
+      var sortable_id = '#' + value
+      $(sortable_id).sortable()
+      $(sortable_id).sortable({
+        axis: 'y',
+        items: '.project',
+        cursor: 'move',
+        stop: function(e, ui){
+          ui.item.children('.project').effect('highlight', {}, 1000)
+          },
+          update: function(e, ui){
+            item_id = ui.item.data('project_id')
+            row_order = ui.item.index('.project')
+            console.log({item_id, row_order})
+            $.ajax({
+              type: 'POST',
+              url: $(this).data('update_url'),
+              dataType: 'json',
+              data: {id: item_id, project: { project_order_position: row_order}}  
+            })
+          }
+        })
+      })
+</script>
 

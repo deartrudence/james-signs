@@ -1,4 +1,9 @@
 class SubCategory < ApplicationRecord
+	include RankedModel
+
+  ranks :sub_category_order,
+  	:with_same => :portfolio_section_id
+
   belongs_to :portfolio_section
   has_many :projects
 	has_many :pictures, as: :pictureable, dependent: :destroy
