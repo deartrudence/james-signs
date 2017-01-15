@@ -1,49 +1,58 @@
 <p id="notice"><%= notice %></p>
 
+<div class="wrapper">
+	<%= render_breadcrumbs :separator => ' / '  %>
 
-<%= render_breadcrumbs :separator => ' / '  %>
+	<% first_project = @sub_category.projects.rank(:project_order).first%>
 
-<% first_project = @sub_category.projects.rank(:project_order).first%>
-
-<% if first_project.present? %>
-	<div id="js_first" style="text-align: center; border: 1px solid black;">
-		<%= image_tag(first_project.pictures.rank(:picture_order).first.image.url) if first_project.pictures.present? %>
-		<h3><%= first_project.title %></h3>
-		<p><%= first_project.item_number %></p>
-		<p><%= first_project.size %></p>
-		<p><%= first_project.materials %></p>
-		<p><%= first_project.description %></p>
-
-		<% if first_project.pictures.count > 2  %>
-			<div class="js_additional_photos">
-				<h5>Additional Photos</h5>
-				<% first_project.pictures.rank(:picture_order).offset(1).each do |picture| %>
-					<%= image_tag(picture.image.url, style: "max-width: 100px")%>
-				<% end %>
+	<% if first_project.present? %>
+		<div id="js_first text-center portfolio-first" style="text-align: center;border: 1px solid black;">
+			<%= image_tag(first_project.pictures.rank(:picture_order).first.image.url) if first_project.pictures.present? %>
+			<div class="wrapper--flex">
+				<div class="col--two">
+					<h3 class="pf"><%= first_project.title %></h3>
+					<p class="pf"><%= first_project.item_number %></p>
+					<p class="pf"><%= first_project.size %></p>
+					<p class="pf"><%= first_project.materials %></p>
+					<p class="pf"><%= first_project.description %></p>
+				</div>
+				<div class="col--two">
+					<% if first_project.pictures.count > 2  %>
+						<div class="js_additional_photos">
+							<h5>Additional Photos</h5>
+							<% first_project.pictures.rank(:picture_order).offset(1).each do |picture| %>
+								<%= image_tag(picture.image.url, style: "max-width: 100px")%>
+							<% end %>
+						</div>
+					<% end %>
+				</div>
 			</div>
-		<% end %>
-	</div>
-<% end %>
+		</div>
+	<% end %>
+	
+</div>
 
-<% @sub_category.projects.rank(:project_order).offset(1).each do |project| %>
-	<div class="js_secondary" style="width:33.333%; float: left;">
-		<%= image_tag(project.pictures.rank(:picture_order).first.image.url) if project.pictures.present? %>
-		<h3><%= project.title %></h3>
-		<p><%= project.item_number %></p>
-		<p><%= project.size %></p>
-		<p><%= project.materials %></p>
-		<p><%= project.description %></p>
+<div class="portfolio wrapper wrapper--flex">
+	<% @sub_category.projects.rank(:project_order).offset(1).each do |project| %>
+		<div class="js_secondary col--three-margin">
+			<h3><%= project.title %></h3>
+			<%= image_tag(project.pictures.rank(:picture_order).first.image.url) if project.pictures.present? %>
+			<p><%= project.item_number %></p>
+			<p class="hide"><%= project.size %></p>
+			<p class="hide"><%= project.materials %></p>
+			<p><%= project.description %></p>
 
-		<% if first_project.pictures.rank(:picture_order).offset(1).present?  %>
-			<div class="hide js_additional_photos">
-				<h5>Additional Photos</h5>
-				<% project.pictures.rank(:picture_order).offset(1).each do |picture| %>
-					<%= image_tag(picture.image.url, style: "max-width: 100px")%>
-				<% end %>
-			</div>
-		<% end %>	
-	</div>
-<% end %>
+			<% if first_project.pictures.rank(:picture_order).offset(1).present?  %>
+				<div class="hide js_additional_photos">
+					<h5>Additional Photos</h5>
+					<% project.pictures.rank(:picture_order).offset(1).each do |picture| %>
+						<%= image_tag(picture.image.url, style: "max-width: 100px")%>
+					<% end %>
+				</div>
+			<% end %>	
+		</div>
+	<% end %>
+</div>
 
 <style>
 	#js_first img {

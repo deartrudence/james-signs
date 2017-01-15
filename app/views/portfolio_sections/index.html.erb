@@ -1,26 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Portfolio Sections</h1>
-<hr><hr>
-    <% @portfolio_sections.each do |portfolio_section| %>
-      
-      <h2 style="text-align: center;"><%= portfolio_section.title %> </h2>
-      <p style="text-align: center;"><%= portfolio_section.description %></p>
-
-      <% portfolio_section.sub_categories.rank(:sub_category_order).each do |sub_category| %>
-
-      <div style="width: 33.333%; float:left;">
-        <%= link_to sub_category do %>
-          <h3><%= sub_category.title %></h3>
-          <%= image_tag sub_category.pictures.rank(:picture_order).first.image.url %>
-          <p><%= sub_category.description %></p>
-        <% end %>
+<section class="portfolio">
+  <% @portfolio_sections.each do |portfolio_section| %>
+    <div class="section-heading">
+      <div class="wrapper">
+        <h2 class="title"><%= portfolio_section.title %> </h2>
+        <p style="text-align: center;"><%= portfolio_section.description %></p>
       </div>
-
+    </div>
+    <div class="wrapper wrapper--flex">
+      <% portfolio_section.sub_categories.rank(:sub_category_order).each do |sub_category| %>
+        <div class="col--three-margin">
+          <%= link_to sub_category do %>
+            <h3><%= sub_category.title %></h3>
+            <%= image_tag sub_category.pictures.rank(:picture_order).first.image.url %>
+            <p><%= sub_category.description %></p>
+          <% end %>
+        </div>
       <% end %>
-      <hr>
-      
-    <% end %>
+    </div>
+  <% end %>  
+</section>
 
 
 

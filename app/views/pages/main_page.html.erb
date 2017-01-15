@@ -1,21 +1,47 @@
 <h2 style="text-align:center;font-style:italic;">Our Clients recommend us for our Solution making skills and that we Really Do Care</h2>
 
 <hr>
-<h2>Our Service</h2>
-<p>Lorem ipsum dolor sit amet, dictum enim lobortis arcu eu ultrices nonummy, ornare tellus, posuere odio vivamus, nec quis lobortis nec, quis dolor aptent risus vel taciti. Et platea ac. Auctor nonummy ligula dolor vel, ultricies lorem sit libero dui lorem. Amet augue wisi, dolor vivamus suspendisse quam, sollicitudin amet, id nulla lectus voluptatibus fusce. At penatibus, imperdiet mi mi orci, sit lacus a wisi. In arcu elementum, diam vestibulum id tellus mollitia.</p>
+<section class="service">
+	<div class="section-heading">
+		<h2 class="title">Our Service</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus incidunt vero vitae inventore quam? Quod cupiditate, maxime amet eveniet quam rem dolores. Soluta, blanditiis voluptate.</p>
+	</div>
+	<div class="wrapper">
+		<p>Lorem ipsum dolor sit amet, dictum enim lobortis arcu eu ultrices nonummy, ornare tellus, posuere odio vivamus, nec quis lobortis nec, quis dolor aptent risus vel taciti. Et platea ac. Auctor nonummy ligula dolor vel, ultricies lorem sit libero dui lorem. Amet augue wisi, dolor vivamus suspendisse quam, sollicitudin amet, id nulla lectus voluptatibus fusce. At penatibus, imperdiet mi mi orci, sit lacus a wisi. In arcu elementum, diam vestibulum id tellus mollitia.</p>
+	</div>
+</section>
 
-<h2>Portfolio of Recent Projects</h2>
-<div class="clearfix">
-	<% @recent_projects.rank(:project_order).each do |project| %>
-		<div style="width:33.333%; float:left;">
-			<p><%= project.title %></p>
-			<%= image_tag project.pictures.rank(:picture_order).first.image.url if project.pictures.present? %>
-		</div>
-	<% end %>
-</div>
+<section class="recent-projects">
+	<div class="section-heading">
+		<h2 class="title">Portfolio of Recent Projects</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa molestiae eius, minus a magnam. Ullam quibusdam fugit, ipsum quisquam itaque, beatae aliquid accusamus dolorem? Excepturi!</p>
+	</div>
+	<div class="wrapper wrapper--flex">
+		<% @recent_projects.rank(:project_order).each do |project| %>
+			<div class="col--three-margin">
+				<p><%= project.title %></p>
+				<%= image_tag project.pictures.rank(:picture_order).first.image.url if project.pictures.present? %>
+			</div>
+		<% end %>
+	</div>
+</section>
 
-<h2>Learning Center & FAQ</h2>
-<p>Lorem ipsum dolor sit amet, dictum enim lobortis arcu eu ultrices nonummy, ornare tellus, posuere odio vivamus, nec quis lobortis nec, quis dolor aptent risus vel taciti. Et platea ac. Auctor nonummy ligula dolor vel, ultricies lorem sit libero dui lorem. Amet augue wisi, dolor vivamus suspendisse quam, sollicitudin amet, id nulla lectus voluptatibus fusce. At penatibus, imperdiet mi mi orci, sit lacus a wisi. In arcu elementum, diam vestibulum id tellus mollitia.</p>
+<section class="learning">
+	<div class="section-heading">
+		<h2 class="title">Learning Center & FAQ</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora quis ea, numquam voluptas dolore a, itaque eius, possimus nam tenetur dolores odio esse quas. Quaerat.</p>
+	</div>
+	<div class="wrapper">
+		<p>Lorem ipsum dolor sit amet, dictum enim lobortis arcu eu ultrices nonummy, ornare tellus, posuere odio vivamus, nec quis lobortis nec, quis dolor aptent risus vel taciti. Et platea ac. Auctor nonummy ligula dolor vel, ultricies lorem sit libero dui lorem. Amet augue wisi, dolor vivamus suspendisse quam, sollicitudin amet, id nulla lectus voluptatibus fusce. At penatibus, imperdiet mi mi orci, sit lacus a wisi. In arcu elementum, diam vestibulum id tellus mollitia.</p>
+	</div>
+</section>
 
-<h2>About James Signs</h2>
-<p>Lorem ipsum dolor sit amet, dictum enim lobortis arcu eu ultrices nonummy, ornare tellus, posuere odio vivamus, nec quis lobortis nec, quis dolor aptent risus vel taciti. Et platea ac. Auctor nonummy ligula dolor vel, ultricies lorem sit libero dui lorem. Amet augue wisi, dolor vivamus suspendisse quam, sollicitudin amet, id nulla lectus voluptatibus fusce. At penatibus, imperdiet mi mi orci, sit lacus a wisi. In arcu elementum, diam vestibulum id tellus mollitia.</p>
+<section class="about">
+	<div class="section-heading">
+		<h2 class="title">About James Signs</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi consectetur delectus, natus. Commodi corporis sequi quibusdam, deleniti, et atque voluptates, culpa, libero illum sit cumque!</p>
+	</div>
+	<div class="wrapper">
+		<p>Lorem ipsum dolor sit amet, dictum enim lobortis arcu eu ultrices nonummy, ornare tellus, posuere odio vivamus, nec quis lobortis nec, quis dolor aptent risus vel taciti. Et platea ac. Auctor nonummy ligula dolor vel, ultricies lorem sit libero dui lorem. Amet augue wisi, dolor vivamus suspendisse quam, sollicitudin amet, id nulla lectus voluptatibus fusce. At penatibus, imperdiet mi mi orci, sit lacus a wisi. In arcu elementum, diam vestibulum id tellus mollitia.</p>	
+	</div>
+</section>
