@@ -1,47 +1,146 @@
 <h2 style="text-align:center;font-style:italic;">Our Clients recommend us for our Solution making skills and that we Really Do Care</h2>
 
 <hr>
-<section class="service">
+<section class="services" id="services">
 	<div class="section-heading">
 		<h2 class="title">Our Service</h2>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus incidunt vero vitae inventore quam? Quod cupiditate, maxime amet eveniet quam rem dolores. Soluta, blanditiis voluptate.</p>
+		<ul class="side-crumbs">
+			<li><a href="#services" class="current">Services &#9632;</a></li>
+			<li><a href="#projects">Portfolio &#9632;</a></li>
+			<li><a href="#faq">FAQ &#9632;</a></li>
+			<li><a href="#about">About Us &#9632;</a></li>
+		</ul>
 	</div>
-	<div class="wrapper">
-		<p>Lorem ipsum dolor sit amet, dictum enim lobortis arcu eu ultrices nonummy, ornare tellus, posuere odio vivamus, nec quis lobortis nec, quis dolor aptent risus vel taciti. Et platea ac. Auctor nonummy ligula dolor vel, ultricies lorem sit libero dui lorem. Amet augue wisi, dolor vivamus suspendisse quam, sollicitudin amet, id nulla lectus voluptatibus fusce. At penatibus, imperdiet mi mi orci, sit lacus a wisi. In arcu elementum, diam vestibulum id tellus mollitia.</p>
+	<div class="wrapper wrapper--flex">
+		<div class="idea col--three-margin">
+			<%= image_tag 'lightbulb.png' %>
+			<h3>Imagineering</h3>
+			<p>Find helpful information on how to design and properly prepare files for production</p>
+		</div>
+		<div class="idea col--three-margin">
+			<%= image_tag 'lightbulb.png' %>
+			<h3>Imagineering</h3>
+			<p>Find helpful information on how to design and properly prepare files for production</p>
+		</div>
+		<div class="idea col--three-margin">
+			<%= image_tag 'lightbulb.png' %>
+			<h3>Imagineering</h3>
+			<p>Find helpful information on how to design and properly prepare files for production</p>
+		</div>
+		<div class="idea col--three-margin">
+			<%= image_tag 'lightbulb.png' %>
+			<h3>Imagineering</h3>
+			<p>Find helpful information on how to design and properly prepare files for production</p>
+		</div>
+		<div class="idea col--three-margin">
+			<%= image_tag 'lightbulb.png' %>
+			<h3>Imagineering</h3>
+			<p>Find helpful information on how to design and properly prepare files for production</p>
+		</div>
+		<div class="idea col--three-margin">
+			<%= image_tag 'lightbulb.png' %>
+			<h3>Imagineering</h3>
+			<p>Find helpful information on how to design and properly prepare files for production</p>
+		</div>
 	</div>
 </section>
 
-<section class="recent-projects">
+<section class="recent-projects" id="projects">
 	<div class="section-heading">
 		<h2 class="title">Portfolio of Recent Projects</h2>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa molestiae eius, minus a magnam. Ullam quibusdam fugit, ipsum quisquam itaque, beatae aliquid accusamus dolorem? Excepturi!</p>
+		<ul class="side-crumbs">
+			<li><a href="#services" >Services &#9632;</a></li>
+			<li><a href="#projects" class="current">Portfolio &#9632;</a></li>
+			<li><a href="#faq">FAQ &#9632;</a></li>
+			<li><a href="#about">About Us &#9632;</a></li>
+		</ul>
 	</div>
 	<div class="wrapper wrapper--flex">
 		<% @recent_projects.rank(:project_order).each do |project| %>
-			<div class="col--three-margin">
-				<p><%= project.title %></p>
+			<div class="col--three-margin portfolio">
+				<h3><%= project.title %></h3>
 				<%= image_tag project.pictures.rank(:picture_order).first.image.url if project.pictures.present? %>
 			</div>
 		<% end %>
 	</div>
+		<div>
+			<%= link_to 'Our Full Portfolio', portfolio_sections_path, class: 'center-text' %>
+		</div>
 </section>
 
-<section class="learning">
+<section class="learning" id="faq">
 	<div class="section-heading">
 		<h2 class="title">Learning Center & FAQ</h2>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora quis ea, numquam voluptas dolore a, itaque eius, possimus nam tenetur dolores odio esse quas. Quaerat.</p>
+		<ul class="side-crumbs">
+			<li><a href="#services" >Services &#9632;</a></li>
+			<li><a href="#projects" >Portfolio &#9632;</a></li>
+			<li><a href="#faq" class="current">FAQ &#9632;</a></li>
+			<li><a href="#about">About Us &#9632;</a></li>
+		</ul>
 	</div>
-	<div class="wrapper">
-		<p>Lorem ipsum dolor sit amet, dictum enim lobortis arcu eu ultrices nonummy, ornare tellus, posuere odio vivamus, nec quis lobortis nec, quis dolor aptent risus vel taciti. Et platea ac. Auctor nonummy ligula dolor vel, ultricies lorem sit libero dui lorem. Amet augue wisi, dolor vivamus suspendisse quam, sollicitudin amet, id nulla lectus voluptatibus fusce. At penatibus, imperdiet mi mi orci, sit lacus a wisi. In arcu elementum, diam vestibulum id tellus mollitia.</p>
+	<div class="wrapper wrapper--flex">
+		<div class="idea col--three-margin">
+			<%= image_tag 'lightbulb.png' %>
+			<h3>Imagineering</h3>
+			<p>Find helpful information on how to design and properly prepare files for production</p>
+		</div>
+		<div class="idea col--three-margin">
+			<%= image_tag 'lightbulb.png' %>
+			<h3>Imagineering</h3>
+			<p>Find helpful information on how to design and properly prepare files for production</p>
+		</div>
+		<div class="idea col--three-margin">
+			<%= image_tag 'lightbulb.png' %>
+			<h3>Imagineering</h3>
+			<p>Find helpful information on how to design and properly prepare files for production</p>
+		</div>
+		<div class="idea col--three-margin">
+			<%= image_tag 'lightbulb.png' %>
+			<h3>Imagineering</h3>
+			<p>Find helpful information on how to design and properly prepare files for production</p>
+		</div>
+		<div class="idea col--three-margin">
+			<%= image_tag 'lightbulb.png' %>
+			<h3>Imagineering</h3>
+			<p>Find helpful information on how to design and properly prepare files for production</p>
+		</div>
+		<div class="idea col--three-margin">
+			<%= image_tag 'lightbulb.png' %>
+			<h3>Imagineering</h3>
+			<p>Find helpful information on how to design and properly prepare files for production</p>
+		</div>
 	</div>
 </section>
 
-<section class="about">
+<section class="about" id="about">
 	<div class="section-heading">
 		<h2 class="title">About James Signs</h2>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi consectetur delectus, natus. Commodi corporis sequi quibusdam, deleniti, et atque voluptates, culpa, libero illum sit cumque!</p>
+		<ul class="side-crumbs">
+			<li><a href="#services" >Services &#9632;</a></li>
+			<li><a href="#projects" >Portfolio &#9632;</a></li>
+			<li><a href="#faq">FAQ &#9632;</a></li>
+			<li><a href="#about" class="current">About Us &#9632;</a></li>
+		</ul>
 	</div>
 	<div class="wrapper">
 		<p>Lorem ipsum dolor sit amet, dictum enim lobortis arcu eu ultrices nonummy, ornare tellus, posuere odio vivamus, nec quis lobortis nec, quis dolor aptent risus vel taciti. Et platea ac. Auctor nonummy ligula dolor vel, ultricies lorem sit libero dui lorem. Amet augue wisi, dolor vivamus suspendisse quam, sollicitudin amet, id nulla lectus voluptatibus fusce. At penatibus, imperdiet mi mi orci, sit lacus a wisi. In arcu elementum, diam vestibulum id tellus mollitia.</p>	
 	</div>
 </section>
+
+<script>
+	$('.side-crumbs a').on('click',function(){
+    var target = $(this.hash);
+    console.log(target)
+    target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+    if (target.length) {
+      $('html, body').animate({
+        scrollTop: target.offset().top
+      }, 1000);
+      return false;
+    }
+	});
+</script>
