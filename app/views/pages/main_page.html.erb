@@ -60,7 +60,7 @@
 	<div class="wrapper">
 	<% squares = (@recent_projects.count.to_f / 6).ceil %>
 		<% @recent_projects.rank(:project_order).in_groups_of(6).each_with_index do | projects, index| %>
-			<div class="js-project-group group-<%= index + 1 %> hidden-display ">
+			<div class="js-project-group group-<%= index + 1 %> hidden-display hidden-opacity">
 				<div class="wrapper--flex">
 					<% projects.compact.each do |project|%>
 						<div class="col--three-margin portfolio">
@@ -72,7 +72,7 @@
 			</div>
 		<% end %>
 		<div class="project-nav">
-		<% (1..squares).each do |i| %><span class="page-<%= i %>">&#9632;</span><% end %> 
+		<% (1..squares).each do |i| %><span class="page" data-group="<%= i %>">&#9632;</span><% end %> 
 		</div>
 	</div>
 	<div class="center-text">
@@ -160,5 +160,18 @@
 	});
 
 	// Navigate through recent projects
-	$('.js-project-group').first().removeClass('hidden-display')
+	$('.js-project-group').first().removeClass('hidden-display').removeClass('hidden-opacity')
+	$('.page').first().addClass('selected')
+
+	$('.page').on('click', function(){
+		var page = $(this).data('group')
+		var group = ".group-" + page
+		console.log(group)
+		$('.page').removeClass('selected')
+		$(this).addClass('selected')
+		$('.js-project-group').addClass('hidden-opacity hidden-display')
+		$(group).removeClass('hidden-display')
+		$(group).removeClass('hidden-opacity')
+		// $(group).fadeIn()
+	});
 </script>
