@@ -13,7 +13,9 @@
     	<h1 style="color: blue;">this is the Admin</h1>
       <%= link_to 'Main', main_page_path %>
       <%= link_to 'Admin', admin_path %>
-      <%= yield %>
+      <div class="admin">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>
