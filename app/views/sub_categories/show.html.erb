@@ -6,7 +6,7 @@
 	<% first_project = @sub_category.projects.rank(:project_order).first%>
 
 	<% if first_project.present? %>
-		<div id="js_first text-center portfolio-first" style="text-align: center;border: 1px solid black;">
+		<div id="js_first" class="text-center portfolio-first" style="border: 1px solid black;">
 			<%= image_tag(first_project.pictures.rank(:picture_order).first.image.url) if first_project.pictures.present? %>
 			<div class="wrapper--flex">
 				<div class="col--two">
@@ -54,11 +54,6 @@
 	<% end %>
 </div>
 
-<style>
-	#js_first img {
-		max-width: 200px;
-	}
-</style>
 <script>
 	$('.js_secondary').on('click', function(){
 
