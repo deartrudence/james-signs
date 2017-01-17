@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="form--contained">
-  <h1 class="center-text">Projects</h1>
+  <h1 class="page-heading center-text">Projects</h1>
 
   <% @sub_categories.each do |sub_category| %>
     <h3 class="category-heading center-text"><%= sub_category.portfolio_section.title %> - <%= sub_category.title %></h3>
@@ -25,7 +25,7 @@
         <% sub_category.projects.rank(:project_order).each do |project| %>
           <tr class="project-<%= sub_category.id %>" data-project_id="<%= project.id %>" data-rank="<%= project.project_order %>">
             <td class=".move"><i class="fa fa-arrows-v"></i></td>
-            <td><%= image_tag project.pictures.rank(:picture_order).try(:first).try(:image).try(:url) %></td>
+            <td><%= image_tag project.pictures.rank(:picture_order).try(:first).try(:image).try(:url) if project.pictures.present? %></td>
             <td><%= project.sub_category.title %></td>
             <td><%= project.title %></td>
             <td>
@@ -39,7 +39,7 @@
                 <% end %>
             </td>
             <td><%= link_to 'Edit', edit_project_path(project), class: 'button button--primary' %></td>
-            <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button--primary' %></td>
+            <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button--primary button--delete' %></td>
           </tr>
         <% end %>
       </tbody>

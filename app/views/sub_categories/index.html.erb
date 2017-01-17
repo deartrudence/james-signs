@@ -2,7 +2,7 @@
 
 <div class="form--contained">
   
-  <h1 style="text-align: center;">Sub Categories</h1>
+  <h1 class="page-heading center-text">Sub Categories</h1>
 
   <% @portfolio_sections.each do |portfolio_section| %>
     <h3 class="category-heading center-text"><%= portfolio_section.title %></h3>
@@ -30,7 +30,7 @@
             <td><%= sub_category.title %></td>
             <td><%= sub_category.description.truncate(10) %></td>
             <td><%= link_to 'Edit', edit_sub_category_path(sub_category), class: 'button button--primary' %></td>
-            <td><%= link_to 'Destroy', sub_category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button--primary' %></td>
+            <td><%= link_to 'Destroy', sub_category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button--primary button--delete' %></td>
           </tr>
         <% end %>
       </tbody>

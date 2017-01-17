@@ -29,7 +29,9 @@
       $('#notice').addClass('hidden')
 
       if($('#notice').text()){
-        $('#notice').removeClass('hidden')
+        // $('#notice').removeClass('hidden')
+        $('#notice').removeClass('hidden').fadeOut(2000, function(){
+        })
       }
     </script>
   </body>
