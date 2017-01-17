@@ -1,7 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<div class="bread-crumbs">
+	<div class="wrapper">
+		<%= render_breadcrumbs :separator => ' > '  %>
+	</div>
+</div>
 <div class="wrapper">
-	<%= render_breadcrumbs :separator => ' / '  %>
 
 	<% first_project = @sub_category.projects.rank(:project_order).first%>
 
@@ -47,9 +51,11 @@
 			<% if first_project.pictures.rank(:picture_order).offset(1).present?  %>
 				<div class="hide js_additional_photos">
 					<h5>Additional Photos</h5>
-					<% project.pictures.rank(:picture_order).offset(1).each do |picture| %>
-						<%= image_tag(picture.image.url, style: "max-width: 100px")%>
-					<% end %>
+					<div class="additional-photos">
+						<% project.pictures.rank(:picture_order).offset(1).each do |picture| %>
+							<%= image_tag(picture.image.url, style: "max-width: 100px")%>
+						<% end %>
+					</div>
 				</div>
 			<% end %>	
 		</div>
@@ -57,13 +63,16 @@
 </div>
 
 <script>
-
-	$('.additional-photos').on('click','.additional-img', function(){
+//Switching out 'Additional Photos' section
+	$('.additional-photos').on('click','.additional-img', function(e){
+		console.log(e)
 		var new_src = $(this).attr('src')
 		var old_src = $('.pf').attr('src')
 		$('.pf').attr('src', new_src)
 		$(this).attr('src', old_src)
 	})
+
+// Switching out full projects
 	$('.js_secondary').on('click', function(){
 
 		var attr = $(this).children()

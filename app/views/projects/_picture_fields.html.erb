@@ -1,10 +1,16 @@
-<fieldset class="picture" data-picture_id="<%= f.object.id %>">
-	<%= image_tag f.object.image.url if f.object.image.url.present? %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :image%>
-  <%= f.file_field :image %>
-  <%= unless f.object.new_record? 
-    f.check_box('_destroy') + f.label('_destroy','Remove')
-    end %>
+<fieldset class="picture " data-picture_id="<%= f.object.id %>">
+	<div class="wrapper--flex">
+		<div class="col--two">
+			<%= image_tag f.object.image.url if f.object.image.url.present? %>
+		</div>
+		<div class="col--two">
+		  <%= f.label :title %>
+		  <%= f.text_field :title %>
+		  <%= f.label :image%>
+		  <%= f.file_field :image %>
+		  <%= unless f.object.new_record? 
+		    f.check_box('_destroy') + f.label('_destroy','Remove')
+		    end %>
+		</div>
+	</div>
 </fieldset>

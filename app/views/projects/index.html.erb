@@ -10,6 +10,7 @@
       <thead>
         <tr>
           <th></th>
+          <th></th>
           <th>Sub category</th>
           <th>Title</th>
           <th>Recent</th>
@@ -21,10 +22,11 @@
     <tbody class="projects" >
       <% sub_category.projects.rank(:project_order).each do |project| %>
         <tr class="project-<%= sub_category.id %>" data-project_id="<%= project.id %>" data-rank="<%= project.project_order %>">
+          <td><%= image_tag 'move-icon'%></td>
           <td><%= image_tag project.pictures.rank(:picture_order).try(:first).try(:image).try(:url) %></td>
           <td><%= project.sub_category.title %></td>
           <td><%= project.title %></td>
-          <td><%= project.recent %>
+          <td>
             <%= form_for project, remote: true do |f| %>
             <%= f.check_box :recent,
                   data: {
@@ -34,14 +36,14 @@
                   } %>
               <% end %>
           </td>
-          <td><%= link_to 'Show', project %></td>
-          <td><%= link_to 'Edit', edit_project_path(project) %></td>
-          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Show', project, class: 'button button--primary' %></td>
+          <td><%= link_to 'Edit', edit_project_path(project), class: 'button button--primary' %></td>
+          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button--primary' %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= link_to 'New Project', new_project_path(sub_category_id: sub_category.id) %>
+  <%= link_to 'New Project', new_project_path(sub_category_id: sub_category.id), class: 'button button--tertiary' %>
   <hr>
 <% end %>
 
