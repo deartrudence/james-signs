@@ -5,25 +5,26 @@
 		<%= render_breadcrumbs :separator => ' > '  %>
 	</div>
 </div>
-<div class="wrapper">
 
+<div class="wrapper">
 	<% first_project = @sub_category.projects.rank(:project_order).first%>
 
 	<% if first_project.present? %>
-		<div id="js_first" class=" portfolio-first" style="border: 1px solid black;">
+		<div id="js_first" class=" portfolio-first">
+			<h3 class="hide title pf"><%= first_project.title %></h3>
 			<%= image_tag(first_project.pictures.rank(:picture_order).first.image.url, class: 'pf') if first_project.pictures.present? %>
 			<div class="wrapper--flex">
-				<div class="col--two">
-					<h3 class="pf"><%= first_project.title %></h3>
-					<p class="pf"><%= first_project.item_number %></p>
-					<p class="pf"><%= first_project.size %></p>
-					<p class="pf"><%= first_project.materials %></p>
-					<p class="pf"><%= first_project.description %></p>
+				<div class="col--two info">
+					<h3 class="title-lower pf "><%= first_project.title %></h3>
+					<p class="item_number pf"><%= first_project.item_number %></p>
+					<p class="size pf"><%= first_project.size %></p>
+					<p class="materials pf"><%= first_project.materials %></p>
+					<p class="description pf"><%= first_project.description %></p>
 				</div>
 				<div class="col--two">
 					<% if first_project.pictures.count > 2  %>
 						<div class="js_additional_photos">
-							<h5>Additional Photos</h5>
+							<h5>Project Additional Images</h5>
 							<div class="additional-photos">
 								<% first_project.pictures.rank(:picture_order).offset(1).each do |picture| %>
 									<%= image_tag(picture.image.url, class: "additional-img")%>
@@ -35,40 +36,46 @@
 			</div>
 		</div>
 	<% end %>
-	
 </div>
 
 <div class="portfolio wrapper wrapper--flex">
-	<% @sub_category.projects.rank(:project_order).offset(1).each do |project| %>
-		<div class="js_secondary col--three-margin">
-			<h3><%= project.title %></h3>
-			<%= image_tag(project.pictures.rank(:picture_order).first.image.url) if project.pictures.present? %>
-			<p><%= project.item_number %></p>
-			<p class="hide"><%= project.size %></p>
-			<p class="hide"><%= project.materials %></p>
-			<p><%= project.description %></p>
-
-			<% if first_project.pictures.rank(:picture_order).offset(1).present?  %>
-				<div class="hide js_additional_photos">
-					<h5>Additional Photos</h5>
-					<div class="additional-photos">
-						<% project.pictures.rank(:picture_order).offset(1).each do |picture| %>
-							<%= image_tag(picture.image.url, style: "max-width: 100px")%>
+		<% @sub_category.projects.rank(:project_order).offset(1).each do |project| %>
+			<div class="js_secondary col--three-margin">
+				<h3 class="title pf "><%= project.title %></h3>
+				<%= image_tag(project.pictures.rank(:picture_order).first.image.url, class: 'pf') if project.pictures.present? %>
+				<div class="wrapper--flex">
+					<div class="info">
+						<h3 class="hide title-lower pf "><%= project.title %></h3>
+						<p class="item_number pf"><%= project.item_number %></p>
+						<p class="hide size pf"><%= project.size %></p>
+						<p class="hide materials pf"><%= project.materials %></p>
+						<p class="description pf"><%= project.description %></p>
+					</div>
+					<div class="col--two">
+						<% if project.pictures.count > 2  %>
+							<div class="js_additional_photos hide">
+								<h5>Project Additional Images</h5>
+								<div class="additional-photos">
+									<% project.pictures.rank(:picture_order).offset(1).each do |picture| %>
+										<%= image_tag(picture.image.url, class: "additional-img")%>
+									<% end %>
+								</div>
+							</div>
 						<% end %>
 					</div>
 				</div>
-			<% end %>	
-		</div>
-	<% end %>
+			</div>
+		<% end %>
 </div>
+
 
 <script>
 //Switching out 'Additional Photos' section
-	$('.additional-photos').on('click','.additional-img', function(e){
+	$('#js_first').on('click','.additional-img', function(e){
 		console.log(e)
 		var new_src = $(this).attr('src')
-		var old_src = $('.pf').attr('src')
-		$('.pf').attr('src', new_src)
+		var old_src = $('#js_first .pf').attr('src')
+		$('#js_first .pf').attr('src', new_src)
 		$(this).attr('src', old_src)
 	})
 
@@ -79,12 +86,27 @@
 		var prev_attr = $('#js_first').children()
 
 		$(this).find('.js_additional_photos').removeClass('hide')
+		$(this).find('.title-lower').removeClass('hide')
+		$(this).find('.size').removeClass('hide')
+		$(this).find('.materials').removeClass('hide')
+		$(this).find('.title').addClass('hide')
+		$(this).find('.info').addClass('col--two')
+
+		$('#js_first').find('.js_additional_photos').addClass('hide')
+		$('#js_first').find('.title-lower').addClass('hide')
+		$('#js_first').find('.size').addClass('hide')
+		$('#js_first').find('.materials').addClass('hide')
+		$('#js_first').find('.title').removeClass('hide')
+		$('#js_first').find('.info').removeClass('col--two')
 
 		$('#js_first').html(attr)
+
+
 		
 		$(this).html(prev_attr)
-		$(this).find('.js_additional_photos').addClass('hide')
-		console.log($(this).find('.js_additional_photos').addClass('hide'))
+		// $(this).find('.js_additional_photos').addClass('hide')
+		// $(this).find('.title').removeClass('hide')
+
 		$('html, body').animate({scrollTop: $('#js_first').offset().top })
 	})
 </script>
