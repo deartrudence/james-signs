@@ -1,42 +1,44 @@
 <p id="notice"><%= notice %></p>
 
-<h1 style="text-align: center;">Sub Categories</h1>
+<div class="form--contained">
+  
+  <h1 style="text-align: center;">Sub Categories</h1>
 
-<% @portfolio_sections.each do |portfolio_section| %>
-  <h3 style="text-align: center;"><%= portfolio_section.title %></h3>
-  <hr>
-  <table id="sortable-<%= portfolio_section.id %>" data-portfolio_id="<%= portfolio_section.id %>" data-update_url="<%= sort_sub_categories_path %>">
-    <% if portfolio_section.sub_categories.present? %>
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th>Portfolio section</th>
-          <th>Title</th>
-          <th>Description</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-    <% end %>
-
-    <tbody class="sub_categories">
-      <% portfolio_section.sub_categories.rank(:sub_category_order).each do |sub_category| %>
-        <tr class="sub_category-<%= portfolio_section.id %>" data-sub_category_id="<%=  sub_category.id %>" data-rank="<%= sub_category.sub_category_order %>">
-          <td><%= image_tag 'move-icon.png', class: 'move-icon' %></td>
-          <td><%= image_tag sub_category.pictures.rank(:picture_order).try(:first).try(:image).try(:url) %></td>
-          <td><%= sub_category.portfolio_section.title %></td>
-          <td><%= sub_category.title %></td>
-          <td><%= sub_category.description.truncate(10) %></td>
-          <td><%= link_to 'Show', sub_category, class: 'button button--primary' %></td>
-          <td><%= link_to 'Edit', edit_sub_category_path(sub_category), class: 'button button--primary' %></td>
-          <td><%= link_to 'Destroy', sub_category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button--primary' %></td>
-        </tr>
+  <% @portfolio_sections.each do |portfolio_section| %>
+    <h3 class="category-heading center-text"><%= portfolio_section.title %></h3>
+    <hr>
+    <table id="sortable-<%= portfolio_section.id %>" data-portfolio_id="<%= portfolio_section.id %>" data-update_url="<%= sort_sub_categories_path %>">
+      <% if portfolio_section.sub_categories.present? %>
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>Portfolio section</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
       <% end %>
-    </tbody>
-  </table>
-  <%= link_to 'New Sub Category', new_sub_category_path(portfolio_section_id: portfolio_section.id ), class: 'button button--tertiary' %>
-  <hr>
-<% end %>
+
+      <tbody class="sub_categories">
+        <% portfolio_section.sub_categories.rank(:sub_category_order).each do |sub_category| %>
+          <tr class="sub_category-<%= portfolio_section.id %>" data-sub_category_id="<%=  sub_category.id %>" data-rank="<%= sub_category.sub_category_order %>">
+            <td><%= image_tag 'move-icon.png', class: 'move-icon' %></td>
+            <td><%= image_tag sub_category.pictures.rank(:picture_order).try(:first).try(:image).try(:url) %></td>
+            <td><%= sub_category.portfolio_section.title %></td>
+            <td><%= sub_category.title %></td>
+            <td><%= sub_category.description.truncate(10) %></td>
+            <td><%= link_to 'Edit', edit_sub_category_path(sub_category), class: 'button button--primary' %></td>
+            <td><%= link_to 'Destroy', sub_category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button--primary' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'New Sub Category', new_sub_category_path(portfolio_section_id: portfolio_section.id ), class: 'button button--tertiary' %>
+    <hr>
+  <% end %>
+</div>
 
 <br>
 

@@ -8,8 +8,19 @@
 		img {
 			max-width: 70%;
 		}
+		&:hover {
+			background-color: #f9f9f9
+		}
 	}
-
+	
+	.move {
+		cursor: move;
+	}
+	.category-heading {
+		background-color: #242424;
+		padding: 10px;
+		color: white;
+	}
 	.green {
 	    background: #78D18B
 	}
@@ -1878,7 +1889,8 @@
 	    z-index: 30;
 	    padding: 50px;
 	    text-align: center;
-	    border-radius: 5px
+	    border-radius: 5px;
+	    border: 3px solid #78D18B
 	}
 
 	.alert {

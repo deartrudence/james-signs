@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :sub_category_id %>
+    <%= f.label :sub_category_id %><br>
     <%= f.collection_select :sub_category_id, SubCategory.all, :id, :title, {:selected => params[:sub_category_id] || project.sub_category_id } %>
   </div>
 
@@ -41,12 +41,8 @@
     <%= f.text_area :materials %>
   </div>
 
-  <div class="field">
-    <%= f.label :recent %>
-    <%= f.check_box :recent %>
-  </div>
-
-  PICTURES
+  <h2>PICTURES</h2>
+  <hr>
   <div class="pictures" id="sortable" data-update_url="<%= sort_pictures_path %>">
     <%= f.fields_for :pictures, f.object.pictures.rank(:picture_order) do |picture_form| %>
       <%= render 'picture_fields', f: picture_form %>

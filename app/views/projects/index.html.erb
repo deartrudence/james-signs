@@ -1,51 +1,53 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Projects</h1>
+<div class="form--contained">
+  <h1 class="center-text">Projects</h1>
 
-<% @sub_categories.each do |sub_category| %>
-  <h3 style="text-align: center;"><%= sub_category.portfolio_section.title %> - <%= sub_category.title %></h3>
-  <hr>
-  <table id="sortable-<%= sub_category.id %>" data-sub_cat_id="<%= sub_category.id %>"data-update_url="<%= sort_projects_path %>">
-    <% if sub_category.projects.present? %>
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th>Sub category</th>
-          <th>Title</th>
-          <th>Recent</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-    <% end %>
-
-    <tbody class="projects" >
-      <% sub_category.projects.rank(:project_order).each do |project| %>
-        <tr class="project-<%= sub_category.id %>" data-project_id="<%= project.id %>" data-rank="<%= project.project_order %>">
-          <td><%= image_tag 'move-icon'%></td>
-          <td><%= image_tag project.pictures.rank(:picture_order).try(:first).try(:image).try(:url) %></td>
-          <td><%= project.sub_category.title %></td>
-          <td><%= project.title %></td>
-          <td>
-            <%= form_for project, remote: true do |f| %>
-            <%= f.check_box :recent,
-                  data: {
-                    remote: true,
-                    url: url_for(action: :toggle_recent, id: project.id.to_i),
-                    method: "POST"
-                  } %>
-              <% end %>
-          </td>
-          <td><%= link_to 'Show', project, class: 'button button--primary' %></td>
-          <td><%= link_to 'Edit', edit_project_path(project), class: 'button button--primary' %></td>
-          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button--primary' %></td>
-        </tr>
+  <% @sub_categories.each do |sub_category| %>
+    <h3 class="category-heading center-text"><%= sub_category.portfolio_section.title %> - <%= sub_category.title %></h3>
+    <hr>
+    
+    <table id="sortable-<%= sub_category.id %>" data-sub_cat_id="<%= sub_category.id %>"data-update_url="<%= sort_projects_path %>">
+      <% if sub_category.projects.present? %>
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>Sub category</th>
+            <th>Title</th>
+            <th>Recent</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
       <% end %>
-    </tbody>
-  </table>
-  <%= link_to 'New Project', new_project_path(sub_category_id: sub_category.id), class: 'button button--tertiary' %>
-  <hr>
-<% end %>
+
+      <tbody class="projects" >
+        <% sub_category.projects.rank(:project_order).each do |project| %>
+          <tr class="project-<%= sub_category.id %>" data-project_id="<%= project.id %>" data-rank="<%= project.project_order %>">
+            <td class=".move"><i class="fa fa-arrows-v"></i></td>
+            <td><%= image_tag project.pictures.rank(:picture_order).try(:first).try(:image).try(:url) %></td>
+            <td><%= project.sub_category.title %></td>
+            <td><%= project.title %></td>
+            <td>
+              <%= form_for project, remote: true do |f| %>
+              <%= f.check_box :recent,
+                    data: {
+                      remote: true,
+                      url: url_for(action: :toggle_recent, id: project.id.to_i),
+                      method: "POST"
+                    } %>
+                <% end %>
+            </td>
+            <td><%= link_to 'Edit', edit_project_path(project), class: 'button button--primary' %></td>
+            <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button--primary' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'New Project', new_project_path(sub_category_id: sub_category.id), class: 'button button--tertiary' %>
+    <hr>
+  <% end %>
+  </div>
 
 <br>
 

@@ -1,6 +1,7 @@
-<h1>Editing Project</h1>
+<div class="form--contained">
+	<h1>Editing <%= @project.title %></h1>
+	<hr>
+	<%= render 'form', project: @project %>
 
-<%= render 'form', project: @project %>
-
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+	<%= link_to 'Back', projects_path, class: 'button button--primary' %>
+</div>

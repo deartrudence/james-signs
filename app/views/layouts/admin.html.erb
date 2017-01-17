@@ -6,16 +6,31 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://use.fontawesome.com/43bdd233ba.js"></script>
   </head>
 
   <body>
-    <div class="wrapper admin">
-    	<h1 style="color: blue;">this is the Admin</h1>
-      <%= link_to 'Main', main_page_path %>
-      <%= link_to 'Admin', admin_path %>
       <div class="admin">
-        <%= yield %>
+    <div id="admin--only">
+      <div class="sidebar">
+        <%= link_to 'James Signs', main_page_path %>
+        <%= link_to 'Admin', admin_path, class: 'sidebar--header' %>
+        <%= link_to 'Sub Categories', sub_categories_path %>
+        <%= link_to 'Projects', projects_path %>
+      </div>
+        <div class="admin--content">
+          <%= yield %>
+        </div>
       </div>
     </div>
+
+    <script>
+      $('#notice').addClass('hidden')
+
+      if($('#notice').text()){
+        $('#notice').removeClass('hidden')
+      }
+    </script>
   </body>
 </html>
