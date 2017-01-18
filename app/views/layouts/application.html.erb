@@ -17,8 +17,6 @@
     <p id="notice"><%= notice %></p>
     <p id="alert"><%= alert %></p>
     <div class="wrapper">
-    	<h1 style="color: green;">this is the Public Facing</h1>
-
       <ul>
         <li class="<%= menu_hl(main_page_path) %>"><%= link_to 'James Signs', main_page_path %></li>
         <li class="<%= menu_hl(portfolio_sections_path)  %> <%= menu_hl(sub_category_path(@sub_category)) if @sub_category.present? %>"><%= link_to 'Portfolio', portfolio_sections_path %></li>
