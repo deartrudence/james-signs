@@ -25,16 +25,17 @@
     <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
+  
+  <% unless current_page?(action: 'new')%>
+    <h2 class="page-heading">Pictures</h2>
+    <div class="pictures" id="sortable" data-update_url="<%= sort_pictures_path%>">
+      <%= f.fields_for :pictures, f.object.pictures.rank(:picture_order) do |picture_form| %>
+        <%= render 'picture_fields', f: picture_form %>
+      <% end %>
+    </div>
 
-  PICTURES
-  <div class="pictures" id="sortable" data-update_url="<%= sort_pictures_path%>">
-    <%= f.fields_for :pictures, f.object.pictures.rank(:picture_order) do |picture_form| %>
-      <%= render 'picture_fields', f: picture_form %>
-    <% end %>
-  </div>
-
-  <%= link_to_add_fields "Add Another Image", f, :pictures %>
-
+    <%= link_to_add_fields "Add Another Image", f, :pictures %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

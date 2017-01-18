@@ -40,9 +40,12 @@
           </div>
         </div>
         <div class="col--four phone-number">
-          <p><i class="fa fa-phone"></i> 416.767.4841</p>
-          <p><i class="fa fa-phone"></i> 1.877.422.4841</p>
-          <p><i class="fa fa-envelope-o"></i> info@james-signs.com</p>
+          <p><a href="tel:4167674841"><i class="fa fa-phone"></i> 416.767.4841</a></p>
+          <p><a href="tel:18774224841"><i class="fa fa-phone"></i> 1.877.422.4841</a></p>
+          <p>
+            <i class="fa fa-envelope-o"></i>
+            <%= mail_to "mailto:info@james-signs.com", "info@james-signs.com", target: "_blank"%>
+          </p>
         </div>
       </div>
     </footer>

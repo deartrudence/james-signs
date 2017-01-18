@@ -1,18 +1,23 @@
 .admin{
 	img: width 100px;
 
-	.move-icon {
-		cursor: grab;
-	}
 	fieldset {
 		img {
-			max-width: 70%;
+			max-width: 50%;
 		}
 		&:hover {
 			background-color: #f9f9f9
 		}
 	}
 	
+	.fa {
+		font-size: 24px;
+		padding: 10px;
+		cursor: move;
+	}
+	.move-icon {
+		cursor: move;
+	}
 	.move {
 		cursor: move;
 	}

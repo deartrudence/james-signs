@@ -227,6 +227,22 @@ input
 	:margin-top 60px
 	.title
 		:font-size 40px
+		:position relative
+		:display inline-block
+		&:after
+			:content ''
+			:position absolute
+			:border-bottom 3px solid black
+			:width 60px
+			:top 50%
+			:right -80px
+		&:before
+			:content ''
+			:position absolute
+			:border-bottom 3px solid black
+			:width 60px
+			:top 50%
+			:left -80px
 	p
 		:max-width 700px
 		:margin 0 auto
@@ -267,3 +283,8 @@ footer
 			:color $black
 			:font-weight bold
 			:font-size 20px
+			:transition 0.5s
+			a 
+				:color $black
+				&:hover
+					:color $blue

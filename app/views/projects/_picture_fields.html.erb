@@ -1,6 +1,7 @@
 <fieldset class="picture " data-picture_id="<%= f.object.id %>">
 	<div class="wrapper--flex">
 		<div class="col--two">
+			<i class="fa fa-arrows-v"></i>
 			<%= image_tag f.object.image.url if f.object.image.url.present? %>
 		</div>
 		<div class="col--two">

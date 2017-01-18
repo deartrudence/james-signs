@@ -41,15 +41,18 @@
     <%= f.text_area :materials %>
   </div>
 
-  <h2>PICTURES</h2>
-  <hr>
-  <div class="pictures" id="sortable" data-update_url="<%= sort_pictures_path %>">
-    <%= f.fields_for :pictures, f.object.pictures.rank(:picture_order) do |picture_form| %>
-      <%= render 'picture_fields', f: picture_form %>
-    <% end %>
-  </div>
+  <% unless current_page?(action: 'new')%>
+    <h2 class="page-heading">Pictures</h2>
+    <hr>
+    <div class="pictures" id="sortable" data-update_url="<%= sort_pictures_path %>">
 
-  <%= link_to_add_fields "Add Another Image", f, :pictures %> 
+      <%= f.fields_for :pictures, f.object.pictures.rank(:picture_order) do |picture_form| %>
+        <%= render 'picture_fields', f: picture_form %>
+      <% end %>
+    </div>
+
+    <%= link_to_add_fields "Add Another Image", f, :pictures %> 
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
