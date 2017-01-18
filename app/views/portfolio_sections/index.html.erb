@@ -13,7 +13,10 @@
         <div class="col--three-margin">
           <%= link_to sub_category do %>
             <h3><%= sub_category.title %></h3>
-            <%= image_tag sub_category.pictures.rank(:picture_order).first.image.url %>
+            <div class="sub_cat_image">
+              <%= image_tag sub_category.pictures.rank(:picture_order).first.image.url %>
+              <div class="overlay"></div>
+            </div>
             <p><%= sub_category.description %></p>
           <% end %>
         </div>
