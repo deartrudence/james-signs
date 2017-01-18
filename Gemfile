@@ -8,7 +8,8 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
-
+#for sass
+gem 'bourbon'
 # Authorization
 gem 'devise'
 # Use Puma as the app server
