@@ -1,6 +1,6 @@
 class SubCategoriesController < ApplicationController
   before_action :set_sub_category, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :authenticate_user!, only: [:show]
   def sort
     @sub_category = SubCategory.find(params[:id])
     @sub_category.attributes = params.require(:sub_category).permit(:sub_category_order_position)

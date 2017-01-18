@@ -1,6 +1,6 @@
 class PortfolioSectionsController < ApplicationController
   before_action :set_portfolio_section, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :authenticate_user!, only: [:index]
   # GET /portfolio_sections
   # GET /portfolio_sections.json
   def index

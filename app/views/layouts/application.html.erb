@@ -9,9 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="https://use.fontawesome.com/43bdd233ba.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   </head>
 
   <body>
+    <p id="notice"><%= notice %></p>
+    <p id="alert"><%= alert %></p>
     <div class="wrapper">
     	<h1 style="color: green;">this is the Public Facing</h1>
 
@@ -23,6 +27,7 @@
         <li class="<%= menu_hl(about_path) %>"><%= link_to 'About', about_path %></li>
         <li class="<%= menu_hl(contact_path) %>"><%= link_to 'Contact', contact_path %></li>
         <li class="<%= menu_hl(admin_path) %>"><%= link_to 'Admin', admin_path %></li>
+        <li><%= link_to 'logout',destroy_user_session_path , method: :delete %></li>
       </ul>
     </div>
     <%= yield %>

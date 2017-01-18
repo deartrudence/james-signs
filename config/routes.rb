@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'picture/sort'
 
   resources :projects
   resources :sub_categories
   resources :portfolio_sections
 
+  root to: "pages#main_page"
   get 'main_page' => 'pages#main_page'
   get 'services' => 'pages#services'
   get 'about' => 'pages#about'
