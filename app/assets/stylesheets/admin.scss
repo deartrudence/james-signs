@@ -13,11 +13,18 @@
 				content: 'Featured';
 				font-weight: bold;
 				margin: 35px;
-				font-size: 20px
+				font-size: 20px;
+				color: #40bc5b;
 			}
 		}
 	}
-
+.uat-logo {
+	width: 100px;
+	border: 2px solid #ccc;
+	position: fixed;
+	bottom: 30px;
+	left: 65px;
+}
 input[type='submit']{
 	font-size: 20px;
 	color: #78D18B;
@@ -33,6 +40,8 @@ input[type='submit']{
 	}
 	label {
 		font-weight: bold;
+		display: block;
+		margin-bottom: 7px;
 	}
 	.fa {
 		font-size: 24px;
@@ -813,13 +822,16 @@ input[type='submit']{
 	}
 
 	select {
-	    padding: 10px 20px;
+	    padding: 10px 30px;
 	    -webkit-appearance: none;
 	    -moz-appearance: none;
 	    appearance: none;
 	    border: none;
 	    font-size: 14px;
 	    background: #d3d3d3;
+	    background: url('down-arrow3.png') 96% / 15% no-repeat #e5e5e5;
+	    border: 1px solid #333;
+	    // background: url(images/planet.png) 96% / 15% no-repeat #99bd4b;
 	    border-radius: 5px;
 	    margin-bottom: 16px
 	}

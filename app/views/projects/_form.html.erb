@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :sub_category_id %><br>
+    <%= f.label :sub_category_id %>
     <%= f.collection_select :sub_category_id, SubCategory.all, :id, :title, {:selected => params[:sub_category_id] || project.sub_category_id } %>
   </div>
 
