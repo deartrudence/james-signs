@@ -1,10 +1,23 @@
 @import 'generic'
 
+.icon-wrapper
+	:border-bottom 2px solid $blue
+	:padding-bottom 20px
+	:width 53%
+	:margin 0 auto
+.icon 
+	:max-width 100px
+	&:hover 
+		.cls-2 
+			:fill #d0e7f8
+.cls-2 
+	:fill #bada55
 .recent-projects
 	img
 		:max-width 100%
 .idea
 	:margin-top 50px
+	:text-align center
 	h3 
 		:font-size 24px
 		:font-weight bold
@@ -13,8 +26,6 @@
 	img.photo
 		:max-width 100%
 		:border 4px solid $blue
-	img.icon
-		:width 100px
 .side-crumbs
 	:position absolute
 	:font-family 'Open Sans', sans-serif

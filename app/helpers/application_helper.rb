@@ -4,6 +4,16 @@ module ApplicationHelper
 		'menu-hl' if current_page?(path)
 	end
 
+	def embedded_svg filename, options={}
+		file = File.read(Rails.root.join('app', 'assets', 'images', filename))
+		doc = Nokogiri::HTML::DocumentFragment.parse file
+		svg = doc.at_css 'svg'
+		if options[:class].present?
+		 svg['class'] = options[:class]
+		end
+		doc.to_html.html_safe
+	end
+
 
 	def link_to_add_fields(name, f, association)
 		new_object = f.object.send(association).klass.new
