@@ -95,6 +95,9 @@ $grid-base: 40
 
 =display-for($size: false)
 	@each $screen in $size
+		@if $screen == xxl
+			@media screen and (min-width: 1400px)
+				@content
 		@if $screen == xl
 			@media screen and (min-width: 1170px)
 				@content
@@ -191,7 +194,7 @@ $grid-base: 40
 					:width 100%	
 		&--three-margin
 			+display-for(xl lg md)
-				:width calc(33.33% - 30px)
+				:width calc(33.33% - 15px)
 				&:nth-of-type(2n + 1)
 					:margin-right 0px	
 			+display-for(sm xs)
@@ -199,7 +202,6 @@ $grid-base: 40
 				:width 100%
 				// img 
 				// 	:width 100%
-
 .center-text
 	:text-align center
 //COLORS
@@ -212,7 +214,7 @@ $black : #222222
 $light-blue : #7EC9E7
 $medium-blue : #47A8CB
 
-nav 
+nav.main 
 	:background-color $blue
 	:color white
 	:padding 40px
@@ -220,6 +222,7 @@ nav
 	:position relative
 	a 
 		:color white
+		:font-weight bold
 		&:hover 
 			:color lightblue
 	ul
@@ -256,6 +259,8 @@ input
 	p
 		:max-width 700px
 		:margin 0 auto
+#services .section-heading, #property-facilities, #imagineering 
+	:margin-top 0
 .button 
 	:border 3px solid $blue
 	:padding 15px 40px

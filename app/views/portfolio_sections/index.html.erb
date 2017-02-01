@@ -2,7 +2,7 @@
 
 <section class="portfolio">
   <% @portfolio_sections.each do |portfolio_section| %>
-    <div class="section-heading">
+    <div class="section-heading" id="<%= portfolio_section.title.parameterize%>">
       <div class="wrapper">
         <h2 class="title"><%= portfolio_section.title %> </h2>
         <p style="text-align: center;"><%= portfolio_section.description %></p>

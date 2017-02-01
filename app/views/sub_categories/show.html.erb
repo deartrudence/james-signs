@@ -1,112 +1,161 @@
 <p id="notice"><%= notice %></p>
-
 <div class="bread-crumbs">
 	<div class="wrapper">
 		<%= render_breadcrumbs :separator => ' > '  %>
 	</div>
 </div>
-
+<nav class="side-menu">
+	<div class="wrapper">
+		<ul>
+			<li class="title"><%= link_to @sub_category.portfolio_section.title, portfolio_section_path(@sub_category.portfolio_section) %></li>
+		  <% SubCategory.all.each do |sub_cat| %>
+				<li><%= link_to sub_cat.title, sub_category_path(sub_cat) %></li>
+		  <% end %>
+		</ul>
+	</div>
+</nav>
 <div class="wrapper">
-	<% first_project = @sub_category.projects.rank(:project_order).first%>
-
-	<% if first_project.present? %>
-		<div id="js_first" class=" portfolio-first">
-			<h3 class="hide title pf"><%= first_project.title %></h3>
-			<%= image_tag(first_project.pictures.rank(:picture_order).first.image.url, class: 'pf') if first_project.pictures.present? %>
-			<div class="wrapper--flex">
-				<div class="col--two info">
-					<h3 class="title-lower pf "><%= first_project.title %></h3>
-					<p class="item_number pf"><%= first_project.item_number %></p>
-					<p class="size pf"><%= first_project.size %></p>
-					<p class="materials pf"><%= first_project.materials %></p>
-					<p class="description pf"><%= first_project.description %></p>
+	<div class="recent-carousel">
+		<% @sub_category.projects.rank(:project_order).each do |project| %>
+			<div class="carousel-cell">
+				<div class="carousel-image" style="background: url(<%=project.pictures.rank(:picture_order).first.image.url if project.pictures.present? %>)">		
 				</div>
-				<div class="col--two">
-					<% if first_project.pictures.count > 2  %>
-						<div class="js_additional_photos">
-							<h5>Project Additional Images</h5>
-							<div class="additional-photos">
-								<% first_project.pictures.rank(:picture_order).offset(1).each do |picture| %>
-									<%= image_tag(picture.image.url, class: "additional-img")%>
-								<% end %>
-							</div>
-						</div>
-					<% end %>
+				<div class="carousel-info wrapper--flex">
+					<div class="left col--two">
+						<h3><%= project.title %></h3>	
+						<p><%= project.description %></p>
+					</div>
+					<div class="right col--two">
+						<h3><%= link_to 'view more', sub_category_path(project.sub_category)%></h3>
+					</div>
 				</div>
 			</div>
+		<% end %>
+	</div>
+</div>
+
+<div class="portfolio wrapper wrapper--flex">
+	<% @sub_category.projects.rank(:project_order).offset(1).each do |project| %>
+		<div class="js_secondary col--three-margin">
+			<%= image_tag(project.pictures.rank(:picture_order).first.image.url, class: 'pf') if project.pictures.present? %>
+			<h3 class="title pf "><%= project.title %></h3>
 		</div>
 	<% end %>
 </div>
 
-<div class="portfolio wrapper wrapper--flex">
-		<% @sub_category.projects.rank(:project_order).offset(1).each do |project| %>
-			<div class="js_secondary col--three-margin">
-				<h3 class="title pf "><%= project.title %></h3>
-				<%= image_tag(project.pictures.rank(:picture_order).first.image.url, class: 'pf') if project.pictures.present? %>
-				<div class="wrapper--flex">
-					<div class="info">
-						<h3 class="hide title-lower pf "><%= project.title %></h3>
-						<p class="item_number pf"><%= project.item_number %></p>
-						<p class="hide size pf"><%= project.size %></p>
-						<p class="hide materials pf"><%= project.materials %></p>
-						<p class="description pf"><%= project.description %></p>
+<div class="modal" id="download-modal">
+  <span class="close" id="close">✕</span>
+ 		<div class="modal-carousel">
+		<% @sub_category.projects.first.pictures.each do |picture| %>
+			<div class="carousel-cell">
+				<div class="carousel-image" style="background: url(<%= picture.image.url if picture.present? %>)">		
+				</div>
+				<div class="carousel-info wrapper--flex">
+					<div class="left col--two">
+						<h3><%= @sub_category.projects.first.title %></h3>	
+						<p><%= @sub_category.projects.first.description %></p>
 					</div>
-					<div class="col--two">
-						<% if project.pictures.count > 2  %>
-							<div class="js_additional_photos hide">
-								<h5>Project Additional Images</h5>
-								<div class="additional-photos">
-									<% project.pictures.rank(:picture_order).offset(1).each do |picture| %>
-										<%= image_tag(picture.image.url, class: "additional-img")%>
-									<% end %>
-								</div>
-							</div>
+					<div class="right col--two">
+						<% @sub_category.projects.first.pictures.each do |img| %>
+							<%= image_tag img.image.url , style:'max-width: 100px'%>
 						<% end %>
 					</div>
 				</div>
 			</div>
 		<% end %>
+	</div>
 </div>
+<div class="modal--overlay"></div>
+
+
 
 
 <script>
+
+// Flickity
+	$('.recent-carousel').flickity({
+	  // options
+	  cellAlign: 'left',
+	  contain: true
+	});
+	$('.modal-carousel').flickity({
+	  // options
+	  cellAlign: 'left',
+	  contain: true
+	});
+
+	// FOR MODALS
+
+function centerModal(){
+  var modal = $('.modal');
+  var mWidth = modal.outerWidth()
+  var mHeight = modal.outerHeight()
+  var width = $(window).width();
+  var height = $(window).height();
+  if((width % 1) != 0){
+    width = Math.round(width)
+  }
+  if((height % 1) != 0){
+    height = Math.round(height)
+  }
+  var topPos = (height / 2) - (mHeight / 2);
+  var leftPos = (width / 2) - (mWidth / 2);
+  modal.css({top: topPos, left:leftPos})
+}
+
+//open modal and overlay
+function openModal(modal){
+  $('#' + modal).removeClass('hidden').addClass('open');
+  $('.modal--overlay').removeClass('hidden').addClass('open');
+  $('body').css('overflow', 'hidden');
+  centerModal();
+}
+
+//close modal and overlay
+function closeModal(overlay){
+  $(overlay).addClass('hidden').removeClass('open');
+  $('.modal.open').addClass('hidden').removeClass('open');
+  $('body').css('overflow', 'auto');
+}
+
+centerModal();
 //Switching out 'Additional Photos' section
-	$('#js_first').on('click','.additional-img', function(e){
-		console.log(e)
-		var new_src = $(this).attr('src')
-		var old_src = $('#js_first .pf').attr('src')
-		$('#js_first .pf').attr('src', new_src)
-		$(this).attr('src', old_src)
-	})
+	// $('#js_first').on('click','.additional-img', function(e){
+	// 	console.log(e)
+	// 	var new_src = $(this).attr('src')
+	// 	var old_src = $('#js_first .pf').attr('src')
+	// 	$('#js_first .pf').attr('src', new_src)
+	// 	$(this).attr('src', old_src)
+	// })
 
 // Switching out full projects
-	$('.js_secondary').on('click', function(){
+	// $('.js_secondary').on('click', function(){
 
-		var attr = $(this).children()
-		var prev_attr = $('#js_first').children()
+	// 	var attr = $(this).children()
+	// 	var prev_attr = $('#js_first').children()
 
-		$(this).find('.js_additional_photos').removeClass('hide')
-		$(this).find('.title-lower').removeClass('hide')
-		$(this).find('.size').removeClass('hide')
-		$(this).find('.materials').removeClass('hide')
-		$(this).find('.title').addClass('hide')
-		$(this).find('.info').addClass('col--two')
+	// 	$(this).find('.js_additional_photos').removeClass('hide')
+	// 	$(this).find('.title-lower').removeClass('hide')
+	// 	$(this).find('.size').removeClass('hide')
+	// 	$(this).find('.materials').removeClass('hide')
+	// 	$(this).find('.title').addClass('hide')
+	// 	$(this).find('.info').addClass('col--two')
 
-		$('#js_first').find('.js_additional_photos').addClass('hide')
-		$('#js_first').find('.title-lower').addClass('hide')
-		$('#js_first').find('.size').addClass('hide')
-		$('#js_first').find('.materials').addClass('hide')
-		$('#js_first').find('.title').removeClass('hide')
-		$('#js_first').find('.info').removeClass('col--two')
+	// 	$('#js_first').find('.js_additional_photos').addClass('hide')
+	// 	$('#js_first').find('.title-lower').addClass('hide')
+	// 	$('#js_first').find('.size').addClass('hide')
+	// 	$('#js_first').find('.materials').addClass('hide')
+	// 	$('#js_first').find('.title').removeClass('hide')
+	// 	$('#js_first').find('.info').removeClass('col--two')
 
-		$('#js_first').html(attr)
+	// 	$('#js_first').html(attr)
 
 
 		
-		$(this).html(prev_attr)
+	// 	$(this).html(prev_attr)
 		// $(this).find('.js_additional_photos').addClass('hide')
 		// $(this).find('.title').removeClass('hide')
 
-		$('html, body').animate({scrollTop: $('#js_first').offset().top })
-	})
+	// 	$('html, body').animate({scrollTop: $('#js_first').offset().top })
+	// })
 </script>
