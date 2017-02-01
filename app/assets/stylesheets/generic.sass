@@ -20,7 +20,8 @@ em
 	:content "this"
 	:clear both
 	:height 0
-     
+#notice, #alert 
+	:margin 0    
 .clearfix 
 	:display inline-block
 
@@ -211,6 +212,27 @@ $black : #222222
 $light-blue : #7EC9E7
 $medium-blue : #47A8CB
 
+nav 
+	:background-color $blue
+	:color white
+	:padding 40px
+	:text-transform uppercase
+	:position relative
+	a 
+		:color white
+		&:hover 
+			:color lightblue
+	ul
+		:list-style none
+		:position absolute
+		:right 20px
+		:top 50%
+		:transform translateY(-50%)
+		li 
+			:float left
+			:margin-left 20px
+.menu-hl a
+	:color lightblue
 input 
 	:2px solid $blue
 	:padding 20px
@@ -251,31 +273,51 @@ input
 	:padding 20px
 
 footer 
-	:background-color $gold
+	:background-color $blue
 	:padding 20px
+	:color white
+	h3 
+		:font-size 25px
+		:text-transform uppercase
+		:color $gold
 	.info 
 		:width 80%
 		:margin 0 auto
+		:text-align center
 		p 
 			:font-size 20px
-			:font-weight bold
-	.street-address
-		:color $black
-		:font-weight bold
+			:font-weight normal
+	.hours-section
+		:width 80%
+		.day 
+			:color lightblue
 	.hours
 		:color white
-		:font-weight bold
 		:margin 5px 0
+		:text-align right
 	.phone-number
 		p 
-			:color $black
-			:font-weight bold
 			:font-size 20px
 			:transition 0.5s
 			a 
-				:color $black
+				:color white
 				&:hover
-					:color $blue
+					:color lightblue
+	.social-icons
+		a 
+			:background-color white
+			:height 45px
+			:width 45px
+			:line-height 45px
+			:font-size 30px
+			:border-radius 50%
+			:display inline-block
+			:text-align center
+			:color $blue
+			:transition all 0.5s ease
+			:margin-right 10px
+			&:hover
+				:background-color lightblue
 
 .devise
 	form 
