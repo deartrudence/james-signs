@@ -10,11 +10,49 @@
 	&:hover 
 		.cls-2 
 			:fill #d0e7f8
+.cls-1 
+	:fill $blue
 .cls-2 
-	:fill #bada55
+	:fill white
 .recent-projects
 	img
-		:max-width 100%
+		// :max-width 100%
+.flickity-viewport 
+	:height 765px !important
+.carousel-cell
+	:width 100% /* full width */
+	:height 742px /* height of carousel */
+	:margin-right 10px
+	img
+		:width 100%
+	.carousel-info
+		:color $blue
+		:bottom -30px
+		:right 0
+		:position absolute
+		:width 100%
+		:text-align right
+		:padding 20px
+		:margin 0
+		:background-color white
+		.left
+			text-align: left
+.carousel-image
+	:height 100%
+	:background-size cover !important
+.flickity-prev-next-button
+	:border-radius 0 !important
+	:background rgba(255,255,255, 0.5)
+	.arrow
+		:fill $blue  !important
+	.no-svg
+		:color white
+.flickity-prev-next-button.next 
+	:right 25px !important
+.flickity-prev-next-button.previous 
+	:left 25px !important
+.flickity-page-dots
+	:display none
 .idea
 	:margin-top 50px
 	:text-align center
