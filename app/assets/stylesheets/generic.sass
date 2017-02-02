@@ -202,6 +202,15 @@ $grid-base: 40
 				:width 100%
 				// img 
 				// 	:width 100%
+		&--four-margin
+			+display-for(xl lg md)
+				:width calc(25% - 15px)
+				&:nth-of-type(2n + 1)
+					:margin-right 0
+			+display-for(sm)
+				+make-column(20)
+			+display-for(xs)
+				+make-column(40)
 .center-text
 	:text-align center
 //COLORS

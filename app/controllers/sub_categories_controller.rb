@@ -24,7 +24,12 @@ class SubCategoriesController < ApplicationController
     add_breadcrumb "Main", main_page_path
     add_breadcrumb "Portfolio", portfolio_sections_path
     add_breadcrumb "#{@sub_category.portfolio_section.title}"
-    add_breadcrumb "#{@sub_category.title}" 
+    add_breadcrumb "#{@sub_category.title}"
+    @project = @sub_category.projects.first
+    if params[:project_id]
+      @project = Project.find(params[:project_id])
+      render :project_modal
+    end
   end
 
   # GET /sub_categories/new

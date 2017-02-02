@@ -33,7 +33,12 @@
         <% end %>
       </ul>
     </nav>
-    <div class="wrapper">
+    <div class="wrapper wrapper--flex">
+      <% PortfolioSection.all.each do |portfolio| %>
+        <div class="col--four-margin">
+          <p><%= portfolio.title %></p>
+        </div>
+      <% end %>
     </div>
     <%= yield %>
 

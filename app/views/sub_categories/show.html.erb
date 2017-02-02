@@ -4,6 +4,7 @@
 		<%= render_breadcrumbs :separator => ' > '  %>
 	</div>
 </div>
+<h3><%= @project.title %></h3>
 <nav class="side-menu">
 	<div class="wrapper">
 		<ul>
@@ -36,34 +37,15 @@
 
 <div class="portfolio wrapper wrapper--flex">
 	<% @sub_category.projects.rank(:project_order).offset(1).each do |project| %>
-		<div class="js_secondary col--three-margin">
+		<div class="js_secondary col--three-margin" data-project="<%= project.id %>">
 			<%= image_tag(project.pictures.rank(:picture_order).first.image.url, class: 'pf') if project.pictures.present? %>
 			<h3 class="title pf "><%= project.title %></h3>
 		</div>
 	<% end %>
 </div>
 
-<div class="modal" id="download-modal">
-  <span class="close" id="close">✕</span>
- 		<div class="modal-carousel">
-		<% @sub_category.projects.first.pictures.each do |picture| %>
-			<div class="carousel-cell">
-				<div class="carousel-image" style="background: url(<%= picture.image.url if picture.present? %>)">		
-				</div>
-				<div class="carousel-info wrapper--flex">
-					<div class="left col--two">
-						<h3><%= @sub_category.projects.first.title %></h3>	
-						<p><%= @sub_category.projects.first.description %></p>
-					</div>
-					<div class="right col--two">
-						<% @sub_category.projects.first.pictures.each do |img| %>
-							<%= image_tag img.image.url , style:'max-width: 100px'%>
-						<% end %>
-					</div>
-				</div>
-			</div>
-		<% end %>
-	</div>
+<div id="project-modal-part">	
+	<%= render partial: 'project_modal', locals: {project: @project} %>
 </div>
 <div class="modal--overlay"></div>
 
@@ -83,6 +65,18 @@
 	  cellAlign: 'left',
 	  contain: true
 	});
+
+	// AJAX for project photots
+	$('.js_secondary').on('click', function(){
+		var project_id = $(this).data('project')
+		console.log(project_id)
+		$.ajax({
+	    type: 'GET',
+	    dataType: 'json',
+	    data: {project_id: project_id}  
+	  })
+	  openModal('project-modal')
+	})
 
 	// FOR MODALS
 
@@ -119,6 +113,11 @@ function closeModal(overlay){
 }
 
 centerModal();
+
+$('#close').on('click', function(){
+  var modalOverlay = $('.modal--overlay')[0];
+  closeModal(modalOverlay);
+});
 //Switching out 'Additional Photos' section
 	// $('#js_first').on('click','.additional-img', function(e){
 	// 	console.log(e)
