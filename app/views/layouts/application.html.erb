@@ -23,7 +23,8 @@
     <nav class="main">
       <ul>
         <li class="<%= menu_hl(main_page_path) %>"><%= link_to 'James Signs', main_page_path %></li>
-        <li class="<%= menu_hl(portfolio_sections_path)  %> <%= menu_hl(sub_category_path(@sub_category)) if @sub_category.present? %>"><%= link_to 'Portfolio', portfolio_sections_path %></li>
+        <li class="portfolio-link <%= menu_hl(portfolio_sections_path)  %> <%= menu_hl(sub_category_path(@sub_category)) if @sub_category.present? %>"><%= link_to 'Portfolio', portfolio_sections_path %>      
+        </li>
         <li class="<%= menu_hl(services_path) %>"><%= link_to 'Services', services_path %></li>
         <li class="">Learning Center</li>
         <li class="<%= menu_hl(about_path) %>"><%= link_to 'About', about_path %></li>
@@ -33,12 +34,12 @@
         <% end %>
       </ul>
     </nav>
-    <div class="wrapper wrapper--flex portfolio-menu">
+    <div class="wrapper wrapper--flex portfolio-menu hidden-opacity">
       <% PortfolioSection.all.each do |portfolio| %>
         <div class="col--four-margin">
         <div class="portfolio-image">
           <%= image_tag portfolio.menu_picture, style: 'max-width: 100%;'%>
-          <div class="overlay port_image"></div>
+          <div class="overlay port-image"></div>
         </div>
           <p><%= portfolio.title %></p>
         </div>
@@ -77,5 +78,20 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      $('.portfolio-link, .portfolio-menu').on('mouseover', function(){
+        $('.portfolio-menu').removeClass('hidden-opacity')
+      });
+      $('.portfolio-link, .portfolio-menu').on('mouseleave', function(){
+        $('.portfolio-menu').addClass('hidden-opacity')
+      });
+      // $('.portfolio-menu').on('mouseover', function(){
+      //   $('.portfolio-menu').removeClass('hidden-opacity')
+      // });
+      // $('.portfolio-link, portfolio-menu').on('mouseleave', function(){
+      //   $('.portfolio-menu').addClass('hidden-opacity')
+      // });
+    </script>
   </body>
 </html>
