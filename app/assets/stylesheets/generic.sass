@@ -204,7 +204,7 @@ $grid-base: 40
 				// 	:width 100%
 		&--four-margin
 			+display-for(xl lg md)
-				:width calc(25% - 15px)
+				:width calc(25% - 25px)
 				&:nth-of-type(2n + 1)
 					:margin-right 0
 			+display-for(sm)
@@ -249,7 +249,13 @@ input
 	:2px solid $blue
 	:padding 20px
 	:margin-bottom 30px
-
+.portfolio-menu
+	:margin-top 25px
+	p 
+		:margin 5px 5px 20px 5px
+		:text-transform uppercase
+		:color $blue
+		:font-weight bold
 // Universal Styles
 .section-heading
 	:background-color $gold

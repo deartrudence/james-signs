@@ -33,9 +33,13 @@
         <% end %>
       </ul>
     </nav>
-    <div class="wrapper wrapper--flex">
+    <div class="wrapper wrapper--flex portfolio-menu">
       <% PortfolioSection.all.each do |portfolio| %>
         <div class="col--four-margin">
+        <div class="portfolio-image">
+          <%= image_tag portfolio.menu_picture, style: 'max-width: 100%;'%>
+          <div class="overlay port_image"></div>
+        </div>
           <p><%= portfolio.title %></p>
         </div>
       <% end %>
