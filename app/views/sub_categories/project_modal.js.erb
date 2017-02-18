@@ -1,1 +1,17 @@
-$("#project-modal-part>").html("<%= escape_javascript render(partial: 'project_modal', locals: {project: @project}) %> ");
+$("#project-modal-part").html("<%= escape_javascript render(partial: 'project_modal', locals: {project: @project}) %> ");
+
+console.log('test')
+
+// Flickity
+	$('.recent-carousel').flickity({
+	  // options
+	  cellAlign: 'left',
+	  contain: true
+	});
+	$('.modal-carousel').flickity({
+	  // options
+	  cellAlign: 'left',
+	  contain: true
+	});
+
+openModal('project-modal')

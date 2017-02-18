@@ -75,10 +75,9 @@
 		console.log(project_id)
 		$.ajax({
 	    type: 'GET',
-	    dataType: 'json',
+	    dataType: 'script',
 	    data: {project_id: project_id}  
 	  })
-	  openModal('project-modal')
 	})
 
 	// FOR MODALS
