@@ -40,7 +40,7 @@
         <div class="col--four-margin">
           <%= link_to portfolio_sections_path(anchor:  portfolio.title.parameterize) do %>
           <div class="portfolio-image">
-              <%= image_tag portfolio.menu_picture, style: 'max-width: 100%;'%>
+              <%= image_tag portfolio.try(:menu_picture), style: 'max-width: 100%;'%>
               <div class="overlay port-image"></div>
           </div>
             <p><%= portfolio.title %></p>
