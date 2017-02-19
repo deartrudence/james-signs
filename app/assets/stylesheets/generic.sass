@@ -38,6 +38,8 @@ em
 	:height 0
 .text-center
 	:text-align center
+.pointer 
+	:cursor pointer
 a 
 	:text-decoration none
 p 
@@ -128,6 +130,9 @@ $grid-base: 40
 		:align-items stretch
 		:justify-content space-between
 		:flex-flow row wrap
+		&:after
+			:content ""
+			:width calc(33% - 15px)
 .wrapper--form
 	:padding 60px 10%
 	+display-for(xs)
@@ -223,7 +228,7 @@ $black : #222222
 $light-blue : #7EC9E7
 $medium-blue : #47A8CB
 
-nav.main 
+nav#main 
 	:background-color $blue
 	:color white
 	:padding 40px
@@ -231,7 +236,6 @@ nav.main
 	:position relative
 	a 
 		:color white
-		:font-weight bold
 		&:hover 
 			:color lightblue
 	ul
@@ -240,7 +244,7 @@ nav.main
 		:right 20px
 		:top 50%
 		:transform translateY(-50%)
-		+display-for(sm xs)
+		+display-for(md sm xs)
 			:position initial
 			:transform translateX(0)
 			:top 0
@@ -248,18 +252,23 @@ nav.main
 			:float left
 			:margin-left 20px
 			:padding 30px 0
-			+display-for(sm xs)
+			:font-weight bold
+			&:hover 
+				:color lightblue
+			+display-for(md sm xs)
 				:float none
 				:margin-left 0
 				:padding 0
-	.menu-hl a
+	.menu-hl
 		:color lightblue
+		a
+			:color lightblue
 input 
 	:2px solid $blue
 	:padding 20px
 	:margin-bottom 30px
 .portfolio-menu
-	:transition 0.3s
+	:display none
 	:background-color white
 	:position absolute
 	:top 80px
@@ -267,11 +276,25 @@ input
 	:transform translateX(-50%)
 	:z-index 999
 	:padding 30px
+	:background-color $light-grey
+	:box-shadow 0 2px 10px rgba(0, 0, 0, 0.3)
 	p 
 		:margin 5px 5px 20px 5px
 		:text-transform uppercase
 		:color $blue
 		:font-weight bold
+#to-top
+	:position fixed
+	:bottom 30px
+	:right 30px
+	:padding 10px 20px
+	:background-color rgba(41, 63, 128, 0.5)
+	:color white
+	:font-size 30px
+	:transition all .3s
+	&:hover
+		:background-color rgba(41, 63, 128, 1)
+		:cursor pointer
 // Universal Styles
 .section-heading
 	:background-color $gold
@@ -388,3 +411,5 @@ footer
 			&:hover
 				:background-color $blue
 				:color $gold
+
+

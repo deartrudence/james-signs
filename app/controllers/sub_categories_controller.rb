@@ -23,7 +23,7 @@ class SubCategoriesController < ApplicationController
   def show
     add_breadcrumb "Main", main_page_path
     add_breadcrumb "Portfolio", portfolio_sections_path
-    add_breadcrumb "#{@sub_category.portfolio_section.title}"
+    add_breadcrumb "#{@sub_category.portfolio_section.title}", portfolio_sections_path(anchor:  @sub_category.portfolio_section.title.parameterize)
     add_breadcrumb "#{@sub_category.title}"
     @project = @sub_category.projects.first
     if params[:project_id]

@@ -4,22 +4,22 @@
     <title>JamesSigns</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
 
     <script src="https://use.fontawesome.com/43bdd233ba.js"></script>
   </head>
 
   <body>
-      <div class="admin">
-    <div id="admin--only">
-      <div class="sidebar">
-        <%= link_to 'James Signs', main_page_path %>
-        <%= link_to 'Admin', admin_path, class: 'sidebar--header' %>
-        <%= link_to 'Sub Categories', sub_categories_path %>
-        <%= link_to 'Projects', projects_path %>
-        <a href="http://www.upatfive.ca/" target="_blank"><%= image_tag 'up-at-five-logo.png', class: 'uat-logo' %></a> 
-      </div>
+    <div class="admin">
+      <div id="admin--only">
+        <div class="sidebar">
+          <%= link_to 'James Signs', main_page_path %>
+          <%= link_to 'Admin', admin_path, class: 'sidebar--header' %>
+          <%= link_to 'Sub Categories', sub_categories_path %>
+          <%= link_to 'Projects', projects_path %>
+          <a href="http://www.upatfive.ca/" target="_blank"><%= image_tag 'up-at-five-logo.png', class: 'uat-logo' %></a> 
+        </div>
         <div class="admin--content">
           <%= yield %>
         </div>

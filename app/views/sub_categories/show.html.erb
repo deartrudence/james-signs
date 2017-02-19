@@ -1,57 +1,60 @@
 <p id="notice"><%= notice %></p>
-<div class="bread-crumbs">
-	<div class="wrapper">
-		<%= render_breadcrumbs :separator => ' > '  %>
+<div class="sub-categories">	
+	<div class="bread-crumbs">
+		<div class="wrapper">
+			<%= render_breadcrumbs :separator => ' > '  %>
+		</div>
 	</div>
-</div>
-<nav class="side-menu">
+	<nav class="side-menu">
+		<div class="wrapper">
+			<ul>
+				<li class="title"><%= link_to @sub_category.portfolio_section.title, portfolio_section_path(@sub_category.portfolio_section) %></li>
+			  <% SubCategory.all.each do |sub_cat| %>
+					<li><%= link_to sub_cat.title, sub_category_path(sub_cat) %></li>
+			  <% end %>
+			</ul>
+		</div>
+	</nav>
 	<div class="wrapper">
-		<ul>
-			<li class="title"><%= link_to @sub_category.portfolio_section.title, portfolio_section_path(@sub_category.portfolio_section) %></li>
-		  <% SubCategory.all.each do |sub_cat| %>
-				<li><%= link_to sub_cat.title, sub_category_path(sub_cat) %></li>
-		  <% end %>
-		</ul>
-	</div>
-</nav>
-<div class="wrapper">
-	<% if @project.present? %>
-		<div class="recent-carousel">
-			<% @sub_category.projects.rank(:project_order).each do |project| %>
-				<div class="carousel-cell">
-					<div class="carousel-image" style="background: url(<%=project.pictures.rank(:picture_order).first.image.url if project.pictures.present? %>)">		
-					</div>
-					<div class="carousel-info wrapper--flex">
-						<div class="left col--two">
-							<h3><%= project.title %></h3>	
-							<p><%= project.description %></p>
+		<% if @project.present? %>
+			<div class="recent-carousel">
+				<% @sub_category.projects.rank(:project_order).each do |project| %>
+					<div class="carousel-cell">
+						<div class="carousel-image" style="background: url(<%=project.pictures.rank(:picture_order).first.image.url if project.pictures.present? %>)">		
 						</div>
-						<div class="right col--two">
-							<h3><%= link_to 'view more', sub_category_path(project.sub_category)%></h3>
+						<div class="carousel-info wrapper--flex">
+							<div class="left col--two">
+								<h3><%= project.title %></h3>	
+								<p><%= project.description %></p>
+							</div>
+							<div class="right col--two">
+								<p>Project Content: </p>
+								<h3 class="js_secondary pointer link" data-project="<%= project.id %>">See More Images ></h3>
+							</div>
 						</div>
 					</div>
+				<% end %>
+			</div>
+		</div> <!-- /.wrapper -->
+
+		<div class="portfolio wrapper wrapper--flex sub-categories--projects">
+			<% @sub_category.projects.rank(:project_order).offset(1).each do |project| %>
+				<div class="pointer js_secondary col--three-margin" data-project="<%= project.id %>">
+					<%= image_tag(project.pictures.rank(:picture_order).first.image.url, class: 'pf') if project.pictures.present? %>
+					<h3 class="title pf "><%= project.title %></h3>
 				</div>
 			<% end %>
+		</div> <!-- /.wrapper -->
+
+		<div id="project-modal-part">	
+			<%= render partial: 'project_modal', locals: {project: @project} %>
 		</div>
+		<div class="modal--overlay hidden"></div>
+	<% else %>
+		<h3 class="center-text">There are no Projects for the Category</h3>
 	</div> <!-- /.wrapper -->
-
-	<div class="portfolio wrapper wrapper--flex">
-		<% @sub_category.projects.rank(:project_order).offset(1).each do |project| %>
-			<div class="js_secondary col--three-margin" data-project="<%= project.id %>">
-				<%= image_tag(project.pictures.rank(:picture_order).first.image.url, class: 'pf') if project.pictures.present? %>
-				<h3 class="title pf "><%= project.title %></h3>
-			</div>
-		<% end %>
-	</div> <!-- /.wrapper -->
-
-	<div id="project-modal-part">	
-		<%= render partial: 'project_modal', locals: {project: @project} %>
-	</div>
-	<div class="modal--overlay"></div>
-<% else %>
-	<h3 class="center-text">There are no Projects for the Category</h3>
-</div> <!-- /.wrapper -->
-<% end %>
+	<% end %>
+</div>
 
 
 
@@ -116,7 +119,7 @@ function closeModal(overlay){
 
 centerModal();
 
-$('#close').on('click', function(){
+$('#project-modal-part').on('click', '#close', function(){
   var modalOverlay = $('.modal--overlay')[0];
   closeModal(modalOverlay);
 });
