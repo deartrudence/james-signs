@@ -315,6 +315,8 @@ input
 	p
 		:max-width 700px
 		:margin 0 auto
+.white 
+	:background-color white
 #services .section-heading, #property-facilities, #imagineering 
 	:margin-top 0
 .button 
@@ -338,16 +340,14 @@ footer
 	:padding 20px
 	:color white
 	h3 
-		:font-size 25px
+		:font-size 22px
+		:margin-bottom 5px
 		:text-transform uppercase
 		:color $gold
-	.info 
-		:width 80%
-		:margin 0 auto
-		:text-align center
-		p 
-			:font-size 20px
-			:font-weight normal
+	p 
+		:font-size 16px
+		:font-weight normal
+		:margin 5px 0
 	.hours-section
 		:width 80%
 		.day 
@@ -360,17 +360,18 @@ footer
 			:text-align center
 	.phone-number
 		+display-for(sm xs)
-			:text-align center
+			// :text-align center
 		p 
-			:font-size 20px
+			:font-size 16px
 			:transition 0.5s
 			a 
 				:color white
 				&:hover
 					:color lightblue
 	.social-icons
+		:margin-top 40px
 		+display-for(sm xs)
-			:text-align center
+			// :text-align center
 		a 
 			:background-color white
 			:height 45px
