@@ -3,6 +3,58 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'generic'
 
+.modal 
+	:width 900px
+	:background white
+	:padding 40px 60px
+	:position fixed
+	:z-index 1000
+	:color $blue
+.modal h2 
+	:margin-bottom 12px 
+.modal .close 
+	:position absolute
+	:top 20px
+	:right 20px
+	:font-size 22px
+	:cursor pointer
+.modal--overlay 
+	:position fixed
+	:top 0
+	:bottom 0
+	:left 0
+	:right 0
+	:z-index 100
+	:background-color rgba(0, 0, 0, 0.5) 
+.modal-carousel .carousel-cell 
+	:height 600px
+	.flickity-viewport
+		// :height 530px !important
+.project-modal
+	.wrapper--flex
+		:align-items flex-end
+	img.feature 
+		:max-height 400px
+		:max-width 100%
+		:display block 
+		:margin 0 auto
+		:margin-bottom 24px
+	.thumbnail-section
+		:display flex
+		:align-items flex-end
+		:justify-content flex-end
+		:flex-flow row wrap
+	img.thumbnail
+		:width 97px
+		:height initial
+		:padding 5px
+.sub-categories 
+	.carousel-info
+		:background $light-grey
+	&--projects
+		:padding-top 30px
+
+
 // nav.side-menu
 // 	:background #ebebeb
 // 	:display inline-block
@@ -34,39 +86,3 @@
 		// 	li 
 		// 		:float left
 		// 		:padding 15px 25px
-
-.modal 
-	:width 900px
-	:background white
-	:padding 40px 60px
-	:position fixed
-	:z-index 1000
-	:color $blue
-.modal h2 
-	:margin-bottom 12px 
-.modal .close 
-	:position absolute
-	:top 20px
-	:right 20px
-	:font-size 22px
-	:cursor pointer
-.modal--overlay 
-	:position fixed
-	:top 0
-	:bottom 0
-	:left 0
-	:right 0
-	:z-index 100
-	:background-color rgba(0, 0, 0, 0.5) 
-.modal-carousel .carousel-cell 
-	:height 600px
-	.flickity-viewport
-		// :height 530px !important
-
-.sub-categories 
-	.carousel-info
-		:background $light-grey
-	&--projects
-		:padding-top 30px
-
-

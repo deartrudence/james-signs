@@ -59,7 +59,6 @@
 
 
 <script>
-
 // Flickity
 	$('.recent-carousel').flickity({
 	  // options
@@ -84,6 +83,14 @@
 	})
 
 	// FOR MODALS
+
+	$('body').on('click', '.thumbnail', function(){
+		console.log('clicking')
+		thumb_source = $(this).attr('src')
+		feature_source = $('.feature').attr('src')
+		$(this).attr('src', feature_source)
+		$('.feature').attr('src', thumb_source)
+	})
 
 function centerModal(){
   var modal = $('.modal');
