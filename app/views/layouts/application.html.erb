@@ -25,7 +25,7 @@
         <%= link_to 'James Signs', main_page_path %>
         <ul>
           <li class="portfolio-link pointer <%= menu_hl(portfolio_sections_path)  %> <%= menu_hl(sub_category_path(@sub_category)) if @sub_category.present? %>">What We Do</li>
-          <li class="">Helpful Knowledge</li>
+          <li class="knowledge-link pointer">Helpful Knowledge</li>
           <li class="">Before and After</li>
           <li class="<%= menu_hl(about_path) %>"><%= link_to 'About', about_path %></li>
           <% if current_user.present? %>
@@ -36,16 +36,64 @@
       </div>
     <div class="wrapper wrapper--flex portfolio-menu ">
       <% PortfolioSection.all.each do |portfolio| %>
-        <div class="col--four-margin">
+        <div class="col--five-margin">
           <%= link_to portfolio_sections_path(anchor:  portfolio.title.parameterize) do %>
           <div class="portfolio-image">
-              <%= image_tag portfolio.try(:menu_picture), style: 'max-width: 100%;'%>
+              <%= image_tag "what_we_do_menu/#{portfolio.try(:menu_picture)}", style: 'max-width: 100%;'%>
               <div class="overlay port-image"></div>
           </div>
             <p><%= portfolio.title %></p>
           <% end %>
         </div>
       <% end %>
+    </div>
+
+    <div class="wrapper wrapper--flex knowledge-menu">
+      <div class="col--five-margin">
+        <%= link_to helpful_knowledge_artwork_path do %>
+        <div class="knowledge-image">
+          <%= image_tag 'helpful_knowledge/icons/artwork_requirements.svg' %>
+        </div>
+        <p>Artwork Requirements</p>
+        <% end %>
+      </div>
+
+      <div class="col--five-margin">
+        <%= link_to helpful_knowledge_size_path do %>
+        <div class="knowledge-image">
+          <%= image_tag 'helpful_knowledge/icons/size_references.svg' %>
+        </div>
+        <p>Size References</p>
+        <% end %>
+      </div>
+
+      <div class="col--five-margin">
+        <%= link_to helpful_knowledge_design_type_path do %>
+        <div class="knowledge-image">
+          <%= image_tag 'helpful_knowledge/icons/design_with_type.svg' %>
+        </div>
+        <p>Design with Type</p>
+        <% end %>
+      </div>
+
+      <div class="col--five-margin">
+        <%= link_to helpful_knowledge_colour_path do %>
+        <div class="knowledge-image">
+          <%= image_tag 'helpful_knowledge/icons/choosing_colour.svg' %>
+        </div>
+        <p>Choosing Colour</p>
+        <% end %>
+      </div>
+
+      <div class="col--five-margin">
+        <%= link_to helpful_knowledge_videos_path do %>
+        <div class="knowledge-image">
+          <%= image_tag 'helpful_knowledge/icons/educational_video.svg' %>
+        </div>
+        <p>Educational Videos</p>
+        <% end %>
+      </div>
+      
     </div>
     </nav>
     <%= yield %>
@@ -85,8 +133,14 @@
 
     <script>
       $('.portfolio-link').click(function(){
-        $('.portfolio-menu').slideToggle()
+        $('.portfolio-menu').fadeToggle()
         $('.portfolio-menu').css('display', 'flex')
+        console.log('down')
+      });
+
+      $('.knowledge-link').click(function(){
+        $('.knowledge-menu').fadeToggle()
+        $('.knowledge-menu').css('display', 'flex')
         console.log('down')
       });
 

@@ -5,7 +5,7 @@
     <div class="section-heading" id="<%= portfolio_section.title.parameterize %>">
       <div class="wrapper">
         <h2 class="title"><%= portfolio_section.title %> </h2>
-        <p style="text-align: center;"><%= portfolio_section.description %></p>
+        <p style="text-align: center;"><%= portfolio_section.description.html_safe %></p>
       </div>
     </div>
     <div class="wrapper wrapper--flex">

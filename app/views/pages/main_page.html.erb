@@ -1,4 +1,4 @@
-<header style="background: url(<%= asset_url 'main_page/banner/banner_gradient_1.jpg'%>); background-size: cover;">
+<header style="background: url(<%= asset_url 'main_page/banner/banner_gradient_1.jpg'%>); background-size: cover; background-position: center top">
 	<div class="slogan">
 		<h2>Understanding your challenges with clarity is the first step in developing a solution that works.</h2>
 	</div>
@@ -82,7 +82,8 @@
 			<p>Quality starts with good ingredients. There is no magic.</p>
 		</div>
 		<div class="idea col--three-margin">
-			<%= link_to(helpful_knowledge_conversion_path) do %>
+			<%= link_to helpful_knowledge_size_path(anchor:  'conversion_tables') do %>
+
 				<div class="icon-wrapper">
 					<%= embedded_svg 'helpful_knowledge/icons/conversion_tables.svg', class: 'icon' %>
 							</div>
