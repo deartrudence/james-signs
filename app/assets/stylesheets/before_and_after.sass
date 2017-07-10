@@ -1,9 +1,33 @@
 @import 'generic'
 
 .b_and_a
+	.each_b_and_a
+		:border-top 1px solid grey
+		:padding-top 20px
+		:margin-top 50px
+		:position relative
+	.date
+		:position absolute
+		:top -35px
+		:background-color white
+		:padding 5px
+		:padding-right 10px 
+		:color grey
+		:font-weight bold
+
 	h2 
 		:margin-top 0
+		:font-weight bold
 	.wrapper
 		:padding 0 120px
 	img 
 		:width 100%
+	.more-images
+		:display none
+		:margin-top 50px
+	.open-images
+		:color $blue
+		:font-weight bold
+		:text-align right
+		:text-decoration underline
+		:cursor pointer

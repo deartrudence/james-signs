@@ -1,21 +1,46 @@
 <section class="b_and_a">
 	<div class="wrapper">
 		<% @before_and_afters.rank(:before_and_after_order).each do |before_and_after| %>
-			<p><%= before_and_after.date %></p>
-			<div class="wrapper--flex">
-				<div class="col--half">
-					<%= image_tag before_and_after.pictures.rank(:picture_order).first.image.url %>
+			<div class="each_b_and_a">
+				<p class="date"><%= before_and_after.date.try(:strftime, "%d %B %C") %></p>
+				<div class="wrapper--flex">
+					<div class="col--half">
+						<%= image_tag before_and_after.pictures.rank(:picture_order).first.image.url %>
+					</div>
+					<div class="col--half">
+						<h2><%= before_and_after.title %></h2>
+						<p><%= before_and_after.description %></p>
+					</div>
 				</div>
-				<div class="col--half">
-					<h2><%= before_and_after.title %></h2>
-					<p><%= before_and_after.description %></p>
-				</div>
+				<% before_and_after.pictures.rank(:picture_order).offset(1).each do |pic| %>
+					<div class="more-images" id="more-images-<%= before_and_after.id %>">
+							<%= image_tag pic.image.url %>
+							<p><%= pic.description %></p>
+					</div>
+					<p class="open-images" id="open-images-<%= before_and_after.id %>">Open More Images ></p>
+				<% end %>
 			</div>
-			<% before_and_after.pictures.rank(:picture_order).offset(1).each do |pic| %>
-				<%= image_tag pic.image.url %>
-				<p><%= pic.description %></p>
-			<% end %>
-			<hr>
 		<% end %>
 	</div>
 </section>
+
+<script>
+	// Extend JQuery to have toggleText function
+	$.fn.extend({
+	    toggleText: function(a, b){
+	        return this.text(this.text() == b ? a : b);
+	    }
+	});
+
+
+	// Open images
+	$('body').on('click', '.open-images', function(){
+		ba_id = $(this).attr('id').split('-').pop()
+		$(this).toggleText('Open More Images >', 'Close Description X')
+		mi_id = "#more-images-" + ba_id
+		$(mi_id).slideToggle()
+
+		console.log(ba_id, mi_id)
+	})
+
+</script>
