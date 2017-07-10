@@ -43,23 +43,24 @@
 	</div>
 	<div class="wrapper">
 		<div class="recent-carousel">
-			<% @recent_projects.each do |project| %>
-				<div class="carousel-cell">
-					<div class="carousel-image" style="background: url(<%=project.pictures.rank(:picture_order).first.image.url if project.pictures.present? %>)">		
-					</div>
-					<div class="carousel-info wrapper--flex">
-						<div class="left col--two">
-							<h3><%= project.title %></h3>	
-							<p><%= project.description %></p>
-						</div>
-						<div class="right col--two">
-							<p>Belongs to:</p>
-							<h3><%= link_to project.sub_category.title, sub_category_path(project.sub_category)%></h3>
-						</div>
+			<% @recent_projects.rank(:project_order).each do |project| %>
+				<div class="carousel-cell" data-title="<%= project.title%>" data-desc="<%= project.description %>" data-sub_title="<%= project.sub_category.title %>" data-sub_path="<%= sub_category_path(project.sub_category)%>">
+					<div class="carousel-image"  style="background: url(<%=project.pictures.rank(:picture_order).first.image.url if project.pictures.present? %>)">		
 					</div>
 				</div>
-
 			<% end %>
+		</div>
+		<div class="carousel-info wrapper--flex">
+			<div class="left col--two">
+				<h3 class="flkty-title"><%= @recent_projects.rank(:project_order).first.title %></h3>	
+				<p class="flkty-desc"><%= @recent_projects.rank(:project_order).first.description %></p>
+			</div>
+			<div class="right col--two">
+				<p>Belongs to:</p>
+				<h3 class="flkty-sub-title">
+					<a href="<%= sub_category_path(@recent_projects.rank(:project_order).first.sub_category) %>" class="flkty-sub-path"><%= @recent_projects.rank(:project_order).first.sub_category.title %></a>
+				</h3>
+			</div>
 		</div>
 	</div>
 
@@ -184,10 +185,23 @@
 
 <script>
 	// Flickity
-	$('.recent-carousel').flickity({
+	var $carousel = $('.recent-carousel').flickity({
 	  // options
 	  cellAlign: 'left',
 	  contain: true
+	});
+
+
+	var flkty = $carousel.data('flickity');
+
+	console.log(flkty)
+
+	$carousel.on( 'select.flickity', function() {
+	  // set image caption using img's alt
+	  $('.flkty-title').text( flkty.selectedElement.dataset.title )
+	  $('.flkty-desc').text( flkty.selectedElement.dataset.desc )
+	  $('.flkty-sub-path').text( flkty.selectedElement.dataset.sub_title )
+	  $('.flkty-sub-path').attr('href', flkty.selectedElement.dataset.sub_path)
 	});
 
 	// Side crumb links

@@ -2,7 +2,7 @@
 
 <div class="form--contained">
   
-  <h1 class="page-heading center-text">Sub Categories</h1>
+  <h1 class="page-heading center-text">Categories</h1>
 
   <% @portfolio_sections.each do |portfolio_section| %>
     <h3 class="category-heading center-text"><%= portfolio_section.title %></h3>
@@ -13,9 +13,7 @@
           <tr>
             <th></th>
             <th></th>
-            <th>Portfolio section</th>
-            <th>Title</th>
-            <th>Description</th>
+            <th>Subcategory</th>
             <th colspan="2"></th>
           </tr>
         </thead>
@@ -26,9 +24,7 @@
           <tr class="sub_category-<%= portfolio_section.id %>" data-sub_category_id="<%=  sub_category.id %>" data-rank="<%= sub_category.sub_category_order %>">
             <td class=".move"><i class="fa fa-arrows-v"></i></td>
             <td><%= image_tag sub_category.pictures.rank(:picture_order).try(:first).try(:image).try(:url) if sub_category.pictures.present? %></td>
-            <td><%= sub_category.portfolio_section.title %></td>
             <td><%= sub_category.title %></td>
-            <td><%= sub_category.description.truncate(10) %></td>
             <td><%= link_to 'Edit', edit_sub_category_path(sub_category), class: 'button button--primary' %></td>
             <td><%= link_to 'Delete', sub_category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button--primary button--delete' %></td>
           </tr>

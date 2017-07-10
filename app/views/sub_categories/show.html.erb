@@ -19,21 +19,21 @@
 		<% if @project.present? %>
 			<div class="recent-carousel">
 				<% @sub_category.projects.rank(:project_order).each do |project| %>
-					<div class="carousel-cell">
+					<div class="carousel-cell" data-title="<%= project.title%>" data-desc="<%= project.description %>" data-sub_title="<%= project.sub_category.title %>" data-id="<%= project.id %>">
 						<div class="carousel-image" style="background: url(<%=project.pictures.rank(:picture_order).first.image.url if project.pictures.present? %>)">		
-						</div>
-						<div class="carousel-info wrapper--flex">
-							<div class="left col--two">
-								<h3><%= project.title %></h3>	
-								<p><%= project.description %></p>
-							</div>
-							<div class="right col--two">
-								<p>Project Content: </p>
-								<h3 class="js_secondary pointer link" data-project="<%= project.id %>">See More Images ></h3>
-							</div>
 						</div>
 					</div>
 				<% end %>
+			</div>
+			<div class="carousel-info wrapper--flex">
+				<div class="left col--two">
+					<h3 class="flkty-title"><%= @sub_category.projects.rank(:project_order).first.title %></h3>	
+					<p class="flkty-desc"><%= @sub_category.projects.rank(:project_order).first.description %></p>
+				</div>
+				<div class="right col--two">
+					<p>Project Content: </p>
+					<h3 class="js_secondary pointer link flkty-id" data-project="<%= @sub_category.projects.rank(:project_order).first.id %>">See More Images ></h3>
+				</div>
 			</div>
 		</div> <!-- /.wrapper -->
 
@@ -59,16 +59,24 @@
 
 
 <script>
-// Flickity
-	$('.recent-carousel').flickity({
+
+	// Flickity
+	var $carousel = $('.recent-carousel').flickity({
 	  // options
 	  cellAlign: 'left',
 	  contain: true
 	});
-	$('.modal-carousel').flickity({
-	  // options
-	  cellAlign: 'left',
-	  contain: true
+
+
+	var flkty = $carousel.data('flickity');
+
+	console.log(flkty)
+
+	$carousel.on( 'select.flickity', function() {
+	  // set image caption using img's alt
+	  $('.flkty-title').text( flkty.selectedElement.dataset.title )
+	  $('.flkty-desc').text( flkty.selectedElement.dataset.desc )
+	  $('.flkty-id').data('project', flkty.selectedElement.dataset.id )
 	});
 
 	// AJAX for project photots
@@ -85,7 +93,6 @@
 	// FOR MODALS
 
 	$('body').on('click', '.thumbnail', function(){
-		console.log('clicking')
 		thumb_source = $(this).attr('src')
 		feature_source = $('.feature').attr('src')
 		$(this).attr('src', feature_source)
@@ -97,7 +104,9 @@ function centerModal(){
   var mWidth = modal.outerWidth()
   var mHeight = modal.outerHeight()
   var width = $(window).width();
+  console.log(width, 'width')
   var height = $(window).height();
+  console.log(height, 'height')
   if((width % 1) != 0){
     width = Math.round(width)
   }
@@ -127,9 +136,16 @@ function closeModal(overlay){
 centerModal();
 
 $('#project-modal-part').on('click', '#close', function(){
+	console.log('clicking close modal')
   var modalOverlay = $('.modal--overlay')[0];
   closeModal(modalOverlay);
 });
+
+$('.modal--overlay').on('click', function(){
+	console.log('click second close modal')
+	var modalOverlay = $('.modal--overlay')[0];
+  closeModal(modalOverlay);
+})
 //Switching out 'Additional Photos' section
 	// $('#js_first').on('click','.additional-img', function(e){
 	// 	console.log(e)

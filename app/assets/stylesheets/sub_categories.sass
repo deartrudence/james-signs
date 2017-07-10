@@ -10,6 +10,17 @@
 	:position fixed
 	:z-index 1000
 	:color $blue
+	+display-for(md)
+		:width 650px
+	+display-for(sm)
+		:width 470px
+		:padding 40px 40px
+	+display-for(xs)
+		:width 300px
+		:padding 40px 40px
+.modal-desc 
+	+display-for(xs sm)
+		:display none
 .modal h2 
 	:margin-bottom 12px 
 .modal .close 
@@ -44,13 +55,15 @@
 		:align-items flex-end
 		:justify-content flex-end
 		:flex-flow row wrap
+		+display-for(xs sm)
+			:justify-content center
 	img.thumbnail
 		:width 97px
 		:height initial
 		:padding 5px
 .sub-categories 
 	.carousel-info
-		:background $light-grey
+		// :background $light-grey
 	&--projects
 		:padding-top 30px
 

@@ -54,13 +54,14 @@ header
 	:width 100% /* full width */
 	:height 742px /* height of carousel */
 	:margin-right 10px
+	+display-for(md)
+		:height 550px
+	+display-for(xs sm)
+		:height 350px
 	img
 		:width 100%
 .carousel-info
 	:color $blue
-	:bottom -30px
-	:right 0
-	:position absolute
 	:width 100%
 	:text-align right
 	:padding 20px
@@ -68,6 +69,8 @@ header
 	:background-color white
 	:margin-bottom 30px
 	:padding-bottom 30px
+	+display-for(xs sm)
+		:text-align left
 	p, h3 
 		:margin 0
 	a, .link

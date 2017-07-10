@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :portfolio_section_id %>
+    <%= f.label :portfolio_section_id, 'Choose Category'.titleize %>
     <%= f.collection_select :portfolio_section_id, PortfolioSection.all, :id, :title, {:selected => params[:portfolio_section_id] || sub_category.portfolio_section_id } %>
   </div>
 
@@ -21,10 +21,6 @@
     <%= f.text_field :title %>
   </div>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
   
   <% unless current_page?(action: 'new')%>
     <h2 class="page-heading">Pictures</h2>
@@ -37,7 +33,7 @@
     <%= link_to_add_fields "Add Image", f, :pictures %>
   <% end %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save Sub Category" %>
   </div>
 <% end %>
 

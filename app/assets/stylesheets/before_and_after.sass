@@ -1,6 +1,10 @@
 @import 'generic'
 
 .b_and_a
+	.wrapper
+		:padding 0 120px
+		+display-for(sm xs)
+			:padding 0 50px
 	.each_b_and_a
 		:border-top 1px solid grey
 		:padding-top 20px
@@ -18,8 +22,6 @@
 	h2 
 		:margin-top 0
 		:font-weight bold
-	.wrapper
-		:padding 0 120px
 	img 
 		:width 100%
 	.more-images

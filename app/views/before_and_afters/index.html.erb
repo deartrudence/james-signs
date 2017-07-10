@@ -21,7 +21,7 @@
           <td class="move"><i class="fa fa-arrows-v"></i></td>
           <td><%= image_tag before_and_after.pictures.rank(:picture_order).try(:first).try(:image).try(:url) if before_and_after.pictures.present? %></td>
           <td><%= before_and_after.title %></td>
-          <td><%= before_and_after.description %></td>
+          <td><%= before_and_after.description.truncate(40) %></td>
           <td><%= link_to 'Edit', edit_before_and_after_path(before_and_after), class: 'button button--primary' %></td>
           <td><%= link_to 'Delete', before_and_after, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button--primary button--delete' %></td>
         </tr>
