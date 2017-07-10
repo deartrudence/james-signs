@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @before_and_after.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @before_and_after.description %>
+</p>
+
+<%= link_to 'Edit', edit_before_and_after_path(@before_and_after) %> |
+<%= link_to 'Back', before_and_afters_path %>

@@ -1,0 +1,1 @@
+json.partial! "before_and_afters/before_and_after", before_and_after: @before_and_after

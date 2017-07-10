@@ -15,6 +15,10 @@ class PagesController < ApplicationController
 		
 	end
 
+	def before_and_after_page
+		@before_and_afters = BeforeAndAfter.all
+	end
+
 	def about
 		
 	end

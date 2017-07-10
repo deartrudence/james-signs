@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<div class="form--contained">
+  
+  <h1 class="page-heading center-text">Before And Afters</h1>
+  <hr>
+  <table id="sortable" data-update_url="<%= sort_before_and_afters_path %>">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Title</th>
+        <th>Description</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @before_and_afters.rank(:before_and_after_order).each do |before_and_after| %>
+        <tr class="before_and_after" data-before_and_after_id="<%= before_and_after.id %>">
+          <td class="move"><i class="fa fa-arrows-v"></i></td>
+          <td><%= image_tag before_and_after.pictures.rank(:picture_order).try(:first).try(:image).try(:url) if before_and_after.pictures.present? %></td>
+          <td><%= before_and_after.title %></td>
+          <td><%= before_and_after.description %></td>
+          <td><%= link_to 'Edit', edit_before_and_after_path(before_and_after), class: 'button button--primary' %></td>
+          <td><%= link_to 'Delete', before_and_after, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button--primary button--delete' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Before And After', new_before_and_after_path, class: 'button button--tertiary'%>
+</div>
+
+<script>
+  // Drag and Droppable Order
+  $('#sortable').sortable();
+
+  $('#sortable').sortable({
+    axis: 'y',
+    items: '.before_and_after',
+    cursor: 'move',
+    stop: function(e, ui){
+      ui.item.children('.before_and_after').effect('highlight', {}, 1000)
+      },
+      update: function(e, ui){
+        item_id = ui.item.data('before_and_after_id')
+        row_order = ui.item.index('.before_and_after')
+        console.log(item_id)
+        $.ajax({
+          type: 'POST',
+          url: $(this).data('update_url'),
+          dataType: 'json',
+          data: {id: item_id, before_and_after: { before_and_after_order_position: row_order}}  
+          })
+      }
+    })
+
+
+</script>

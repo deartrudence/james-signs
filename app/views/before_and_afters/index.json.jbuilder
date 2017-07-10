@@ -1,0 +1,1 @@
+json.array! @before_and_afters, partial: 'before_and_afters/before_and_after', as: :before_and_after

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202151904) do
+ActiveRecord::Schema.define(version: 20170710131331) do
+
+  create_table "before_and_afters", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "before_and_after_order"
+    t.date     "date"
+  end
 
   create_table "pictures", force: :cascade do |t|
     t.string   "title"
@@ -23,6 +32,7 @@ ActiveRecord::Schema.define(version: 20170202151904) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "picture_order"
+    t.text     "description"
   end
 
   create_table "portfolio_sections", force: :cascade do |t|
