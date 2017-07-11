@@ -221,8 +221,11 @@ $grid-base: 40
 		&--five-margin
 			+display-for(xl lg md)
 				:width calc(20% - 20px)
-				&:nth-of-type(2n + 1)
+				:margin-right 20px
+				&:nth-child(5n)
 					:margin-right 0
+				&:nth-of-type(2n + 1)
+					// :margin-right 0
 				// +make-column(13.33)
 			+display-for(sm)
 				:width calc(50% - 20px)
@@ -305,6 +308,8 @@ input
 		:margin 0 auto
 	p
 		:text-align center
+.portfolio-menu.wrapper--flex
+	:justify-content initial
 
 #to-top
 	:position fixed
