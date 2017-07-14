@@ -22,7 +22,9 @@
     <p id="alert"><%= alert %></p>
     <nav id="main">
       <div class="wrapper">
-        <%= link_to 'James Signs', main_page_path %>
+        <%= link_to main_page_path do %>
+          <%= image_tag 'logoheader_white.svg', class: 'logo-header' %>
+        <% end %>
         <ul>
           <li class="portfolio-link pointer <%= menu_hl(portfolio_sections_path)  %> <%= menu_hl(sub_category_path(@sub_category)) if @sub_category.present? %>">What We Do</li>
           <li class="knowledge-link pointer <%= menu_hl( helpful_knowledge_artwork_path)  %> <%= menu_hl(helpful_knowledge_size_path)  %> <%= menu_hl(helpful_knowledge_design_type_path)  %> <%= menu_hl(helpful_knowledge_colour_path)  %> <%= menu_hl(helpful_knowledge_videos_path)  %> ">Helpful Knowledge</li>
@@ -100,8 +102,8 @@
 
     <footer>
       <div class="wrapper wrapper--flex">
-        <div class="col--three">
-          <p>james signes</p>
+        <div class="col--three logo-footer">
+          <%= image_tag 'logofooter_white.svg' %>
           
         </div>
         <div class="col--three">

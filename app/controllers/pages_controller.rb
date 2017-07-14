@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	skip_before_action :authenticate_user!, only: [:main_page, :services, :about, :contact]
+	skip_before_action :authenticate_user!, only: [:main_page, :services, :before_and_after_page, :about, :contact, :hk_artwork_requirements, :hk_conversion_tables, :hk_size_references, :hk_design_with_type, :hk_choosing_colour, :hk_educational_videos ]
 	def admin
 		respond_to do |format|
 		  format.html {render :layout => 'admin'}
