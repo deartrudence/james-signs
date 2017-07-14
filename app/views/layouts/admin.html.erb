@@ -14,7 +14,9 @@
     <div class="admin">
       <div id="admin--only">
         <div class="sidebar">
-          <%= link_to 'James Signs', main_page_path %>
+          <%= link_to main_page_path do %>
+            <%= image_tag 'logoheader_white.svg', class: 'logo-header--admin' %>
+          <% end %>
           <%= link_to 'Admin', admin_path, class: 'sidebar--header' %>
           <%= link_to 'Categories', sub_categories_path %>
           <%= link_to 'Projects', projects_path %>
