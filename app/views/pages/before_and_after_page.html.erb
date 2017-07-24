@@ -12,13 +12,13 @@
 						<p><%= before_and_after.description %></p>
 					</div>
 				</div>
-				<% before_and_after.pictures.rank(:picture_order).offset(1).each do |pic| %>
-					<div class="more-images" id="more-images-<%= before_and_after.id %>">
-							<%= image_tag pic.image.url %>
-							<p><%= pic.description %></p>
-					</div>
-					<p class="open-images" id="open-images-<%= before_and_after.id %>">Open More Images ></p>
-				<% end %>
+				<div class="more-images" id="more-images-<%= before_and_after.id %>">
+					<% before_and_after.pictures.rank(:picture_order).offset(1).each do |pic| %>
+						<%= image_tag pic.image.url %>
+						<p><%= pic.description %></p>
+					<% end %>
+				</div>
+				<p class="open-images" id="open-images-<%= before_and_after.id %>">Open More Images ></p>
 			</div>
 		<% end %>
 	</div>
