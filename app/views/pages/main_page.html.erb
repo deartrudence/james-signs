@@ -35,36 +35,37 @@
 	</div>
 </section>
 
-<section class="recent-projects" id="projects">
-	<div class="section-heading">
-		<h2 class="title">Recent Projects</h2>
-		<p>Everyone likes to look. Go ahead!</p>
-		<p>Maybe you will see something that will inspire an idea for yourself.</p>
-	</div>
-	<div class="wrapper">
-		<div class="recent-carousel">
-			<% @recent_projects.rank(:project_order).each do |project| %>
-				<div class="carousel-cell" data-title="<%= project.title%>" data-desc="<%= project.description %>" data-sub_title="<%= project.sub_category.title %>" data-sub_path="<%= sub_category_path(project.sub_category)%>">
-					<div class="carousel-image"  style="background: url(<%=project.pictures.rank(:picture_order).first.image.url if project.pictures.present? %>)">		
+<%= if @recent_projects.present? %>
+	<section class="recent-projects" id="projects">
+		<div class="section-heading">
+			<h2 class="title">Recent Projects</h2>
+			<p>Everyone likes to look. Go ahead!</p>
+			<p>Maybe you will see something that will inspire an idea for yourself.</p>
+		</div>
+		<div class="wrapper">
+			<div class="recent-carousel">
+				<% @recent_projects.rank(:project_order).each do |project| %>
+					<div class="carousel-cell" data-title="<%= project.title%>" data-desc="<%= project.description %>" data-sub_title="<%= project.sub_category.title %>" data-sub_path="<%= sub_category_path(project.sub_category)%>">
+						<div class="carousel-image"  style="background: url(<%=project.pictures.rank(:picture_order).first.image.url if project.pictures.present? %>)">		
+						</div>
 					</div>
+				<% end %>
+			</div>
+			<div class="carousel-info wrapper--flex">
+				<div class="left col--two">
+					<h3 class="flkty-title"><%= @recent_projects.rank(:project_order).first.try(:title) %></h3>	
+					<p class="flkty-desc"><%= @recent_projects.rank(:project_order).first.try(:description) %></p>
 				</div>
-			<% end %>
-		</div>
-		<div class="carousel-info wrapper--flex">
-			<div class="left col--two">
-				<h3 class="flkty-title"><%= @recent_projects.rank(:project_order).first.title %></h3>	
-				<p class="flkty-desc"><%= @recent_projects.rank(:project_order).first.description %></p>
-			</div>
-			<div class="right col--two">
-				<p>Belongs to:</p>
-				<h3 class="flkty-sub-title">
-					<a href="<%= sub_category_path(@recent_projects.rank(:project_order).first.sub_category) %>" class="flkty-sub-path"><%= @recent_projects.rank(:project_order).first.sub_category.title %></a>
-				</h3>
+				<div class="right col--two">
+					<p>Belongs to:</p>
+					<h3 class="flkty-sub-title">
+						<a href="<%= sub_category_path(@recent_projects.rank(:project_order).first.sub_category) %>" class="flkty-sub-path"><%= @recent_projects.rank(:project_order).first.try(:sub_category).try(:title) %></a>
+					</h3>
+				</div>
 			</div>
 		</div>
-	</div>
-
-</section>
+	</section>
+<% end %>
 
 <section class="learning" id="faq">
 	<div class="section-heading">
