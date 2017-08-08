@@ -37,7 +37,7 @@
         </ul>
       </div>
     <div class="wrapper wrapper--flex portfolio-menu ">
-      <% PortfolioSection.all.each do |portfolio| %>
+      <% PortfolioSection.order(:created_at).each do |portfolio| %>
         <div class="col--five-margin">
           <%= link_to portfolio_sections_path(anchor:  portfolio.title.parameterize) do %>
           <div class="portfolio-image">

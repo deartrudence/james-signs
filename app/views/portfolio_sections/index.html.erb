@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <section class="portfolio">
-  <% @portfolio_sections.each do |portfolio_section| %>
+  <% @portfolio_sections.order(:created_at).each do |portfolio_section| %>
     <div class="section-heading" id="<%= portfolio_section.title.parameterize %>">
       <div class="wrapper">
         <h2 class="title"><%= portfolio_section.title %> </h2>
