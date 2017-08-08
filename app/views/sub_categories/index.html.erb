@@ -4,7 +4,7 @@
   
   <h1 class="page-heading center-text">Categories</h1>
 
-  <% @portfolio_sections.each do |portfolio_section| %>
+  <% @portfolio_sections.order(:created_at).each do |portfolio_section| %>
     <h3 class="category-heading center-text"><%= portfolio_section.title %></h3>
     <hr>
     <table id="sortable-<%= portfolio_section.id %>" data-portfolio_id="<%= portfolio_section.id %>" data-update_url="<%= sort_sub_categories_path %>">
