@@ -84,8 +84,9 @@ Rails.application.configure do
   Paperclip.options[:command_path] = "/usr/local/bin/"
   config.paperclip_defaults = {
     :storage => :s3,
-    :s3_region => 'us-east-1',
-    :bucket => 'james-signs'
+    :s3_region => 'us-west-2',
+    :s3_host_name => 's3-us-west-2.amazonaws.com',
+    :bucket => 'james-signs-prod'
   }
 
   # Do not dump schema after migrations.

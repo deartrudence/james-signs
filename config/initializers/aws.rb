@@ -2,7 +2,7 @@
 Aws.config.update(
  access_key_id:      ENV['AWS_KEY_ID'],
  secret_access_key:  ENV['AWS_KEY'],
- region: 'us-east-1' )
+ region: 'us-west-2' )
 
 S3 = Aws::S3::Client.new
 resp = S3.list_buckets
